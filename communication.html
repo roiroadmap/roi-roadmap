@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lone Star Property Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --section: #EEEAE0;
+      --border: #D8D0C0;
+      --dark: #1A1A18;
+      --gray: #6B6560;
+      --accent: #C8622A;
+      --red-bg: rgba(192,57,43,0.08);
+      --red-bd: rgba(192,57,43,0.22);
+      --amber-bg: rgba(181,114,10,0.08);
+      --amber-bd: rgba(181,114,10,0.22);
+      --green-bg: rgba(46,125,82,0.08);
+      --green-bd: rgba(46,125,82,0.22);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      display: flex;
+      justify-content: center;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* ── Header ─────────────────────────────── */
+    .header {
+      background: var(--dark);
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo svg { width: 18px; height: 18px; }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #F5F0E8;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-size: 10.5px;
+      color: rgba(245,240,232,0.4);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .online {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      font-size: 12px;
+      color: rgba(245,240,232,0.5);
+    }
+
+    .online-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .gear-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      opacity: 0.15;
+      transition: opacity 0.2s;
+    }
+
+    .header:hover .gear-btn { opacity: 0.55; }
+    .gear-btn:hover { opacity: 0.85 !important; }
+
+    /* ── Chat ───────────────────────────────── */
+    .chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chat::-webkit-scrollbar { width: 4px; }
+    .chat::-webkit-scrollbar-track { background: transparent; }
+    .chat::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── Rows ───────────────────────────────── */
+    .row {
+      display: flex;
+      gap: 9px;
+      align-items: flex-end;
+    }
+
+    .row.tenant { flex-direction: row-reverse; }
+
+    .av {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      flex-shrink: 0;
+      letter-spacing: 0.03em;
+    }
+
+    .av.ai {
+      background: var(--section);
+      border: 1px solid var(--border);
+      color: var(--gray);
+    }
+
+    .av.you {
+      background: var(--accent);
+      color: white;
+    }
+
+    .bubble {
+      padding: 11px 15px;
+      border-radius: 18px;
+      font-size: 14.5px;
+      line-height: 1.56;
+      max-width: calc(100% - 86px);
+    }
+
+    .bubble.ai {
+      background: white;
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+      color: var(--dark);
+    }
+
+    .bubble.you {
+      background: var(--accent);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    /* ── Triage Panel ───────────────────────── */
+    .triage-wrap {
+      padding-left: 39px;
+    }
+
+    .triage {
+      background: var(--section);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .triage-hd {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .triage-hd::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--border);
+      display: inline-block;
+    }
+
+    .chips {
+      display: flex;
+      gap: 7px;
+    }
+
+    .chip {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: white;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.38s ease, transform 0.38s ease;
+    }
+
+    .chip.on { opacity: 1; transform: translateY(0); }
+
+    .chip.urg-high  { background: var(--red-bg);   border-color: var(--red-bd); }
+    .chip.urg-medium{ background: var(--amber-bg); border-color: var(--amber-bd); }
+    .chip.urg-low   { background: var(--green-bg); border-color: var(--green-bd); }
+    .chip.act-escalate { background: var(--red-bg);   border-color: var(--red-bd); }
+    .chip.act-monitor  { background: var(--amber-bg); border-color: var(--amber-bd); }
+    .chip.act-auto     { background: var(--green-bg); border-color: var(--green-bd); }
+
+    .chip-lbl {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .chip-val {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .urgdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .urgdot.high   { background: #C0392B; }
+    .urgdot.medium { background: #B5720A; }
+    .urgdot.low    { background: #2E7D52; }
+
+    /* ── Typing ─────────────────────────────── */
+    .typing-row {
+      display: flex;
+      gap: 9px;
+      align-items: flex-end;
+    }
+
+    .typing-bub {
+      padding: 13px 16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .td {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      animation: tdot 1.3s ease-in-out infinite;
+    }
+
+    .td:nth-child(2) { animation-delay: 0.17s; }
+    .td:nth-child(3) { animation-delay: 0.34s; }
+
+    @keyframes tdot {
+      0%, 60%, 100% { transform: translateY(0); background: var(--border); }
+      30% { transform: translateY(-5px); background: var(--gray); }
+    }
+
+    /* ── Input ──────────────────────────────── */
+    .input-area {
+      flex-shrink: 0;
+      padding: 12px 20px 18px;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    .input-box {
+      display: flex;
+      align-items: flex-end;
+      gap: 9px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 10px 10px 10px 16px;
+      transition: border-color 0.2s;
+    }
+
+    .input-box:focus-within { border-color: rgba(200,98,42,0.45); }
+
+    textarea {
+      flex: 1;
+      border: none;
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      font-size: 14.5px;
+      color: var(--dark);
+      background: transparent;
+      max-height: 110px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+
+    textarea::placeholder { color: #C8BDB0; }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .send-btn:hover:not(:disabled) { background: #b3521f; }
+    .send-btn:active:not(:disabled) { transform: scale(0.92); }
+    .send-btn:disabled { background: var(--border); cursor: default; }
+
+    /* ── Animations ─────────────────────────── */
+    .fi { animation: fi 0.35s ease; }
+
+    @keyframes fi {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Modal ──────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,24,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 20px;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid var(--border);
+    }
+
+    .modal h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .modal p {
+      font-size: 13.5px;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      color: var(--dark);
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .modal input:focus { border-color: var(--accent); }
+
+    .modal-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .modal-btn:hover { background: #b3521f; }
+
+    /* ── Mobile ─────────────────────────────── */
+    @media (max-width: 500px) {
+      .chips { flex-direction: column; }
+      .bubble { max-width: calc(100% - 50px); font-size: 14px; }
+      .header { padding: 11px 16px; }
+      .chat { padding: 18px 14px 10px; }
+      .input-area { padding: 10px 14px 16px; }
+      .brand-name { font-size: 14px; }
+      .triage-wrap { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="logo">
+        <!-- Star icon -->
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">Lone Star Property Group</div>
+        <div class="brand-sub">AI Assistant</div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="online">
+        <div class="online-dot"></div>
+        Online
+      </div>
+      <button class="gear-btn" onclick="openModal()" title="API settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Chat -->
+  <main class="chat" id="chat"></main>
+
+  <!-- Input -->
+  <div class="input-area">
+    <div class="input-box">
+      <textarea id="inp" rows="1" placeholder="Message Lone Star Property Group..."></textarea>
+      <button class="send-btn" id="sendBtn" onclick="send()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2" fill="white" stroke="none"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- API Key Modal -->
+<div class="overlay" id="modal" style="display:none">
+  <div class="modal">
+    <h3>Connect to AI</h3>
+    <p>Enter your Anthropic API key to enable live responses. Stored in this session only.</p>
+    <input type="password" id="keyInp" placeholder="sk-ant-..." autocomplete="off" />
+    <button class="modal-btn" onclick="saveKey()">Connect</button>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// Set your Anthropic API key here before demo:
+let API_KEY = '';
+// ─────────────────────────────────────────────
+
+const MODEL = 'claude-sonnet-4-5';
+
+const SYSTEM = `You are a communication triage and response system for Lone Star Property Group, a property management company in San Antonio, Texas managing 140 units across 8 properties. You help tenants with their questions and requests. Keep responses professional, warm, and concise. Never provide legal advice. Always offer to connect the tenant with the property manager for anything urgent or sensitive.
+
+Analyze each tenant message and return ONLY a valid JSON object with exactly these four fields. No markdown code fences, no explanation — just raw JSON:
+
+{
+  "classification": "<one of: Maintenance Request, Rent & Payment, Lease Question, Emergency, General FAQ>",
+  "urgency": "<one of: High, Medium, Low>",
+  "suggested_action": "<one of: Auto-Respond, Escalate to PM, Log and Monitor>",
+  "response": "<your drafted response to the tenant>"
+}`;
+
+// ── State ──────────────────────────────────────
+let busy = false;
+const chat = document.getElementById('chat');
+const inp  = document.getElementById('inp');
+const sendBtn = document.getElementById('sendBtn');
+
+// ── Boot ───────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  const stored = sessionStorage.getItem('lsai_key');
+  if (stored) API_KEY = stored;
+
+  // Seed welcome + example
+  addAI("Hi there — how can I help you today?");
+  addTenant("Hey, my dishwasher has been leaking under the cabinet for two days now. There's water pooling around the base.", false);
+  renderTriage({
+    classification: 'Maintenance Request',
+    urgency: 'Medium',
+    suggested_action: 'Escalate to PM',
+    response: "Thanks for letting us know — we'll get this sorted. I've logged a maintenance request for the dishwasher leak at your unit. A technician will be in touch within 24 hours to schedule a visit. If the leak gets worse in the meantime, reply here and we'll escalate it right away."
+  }, false);
+
+  // Input auto-resize
+  inp.addEventListener('input', () => {
+    inp.style.height = 'auto';
+    inp.style.height = Math.min(inp.scrollHeight, 110) + 'px';
+  });
+
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+  });
+
+  // Modal close on backdrop click
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+
+  document.getElementById('keyInp').addEventListener('keydown', e => {
+    if (e.key === 'Enter') saveKey();
+  });
+});
+
+// ── Message builders ───────────────────────────
+function addAI(text, animate = true) {
+  const row = el('div', 'row' + (animate ? ' fi' : ''));
+  row.innerHTML = `<div class="av ai">LS</div><div class="bubble ai">${esc(text)}</div>`;
+  chat.appendChild(row);
+  down();
+}
+
+function addTenant(text, animate = true) {
+  const row = el('div', 'row tenant' + (animate ? ' fi' : ''));
+  row.innerHTML = `<div class="av you">You</div><div class="bubble you">${esc(text)}</div>`;
+  chat.appendChild(row);
+  down();
+}
+
+function showTyping() {
+  const row = el('div', 'typing-row fi');
+  row.id = 'typing';
+  row.innerHTML = `<div class="av ai">LS</div><div class="typing-bub"><div class="td"></div><div class="td"></div><div class="td"></div></div>`;
+  chat.appendChild(row);
+  down();
+}
+
+function hideTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+// ── Triage panel ───────────────────────────────
+function renderTriage(data, animate = true) {
+  const urg  = data.urgency.toLowerCase();
+  const wrap = el('div', 'triage-wrap' + (animate ? ' fi' : ''));
+  const box  = el('div', 'triage');
+
+  box.innerHTML = `
+    <div class="triage-hd">Triage Analysis</div>
+    <div class="chips">
+      <div class="chip">
+        <span class="chip-lbl">Classification</span>
+        <span class="chip-val">${classIcon(data.classification)}&nbsp;${esc(data.classification)}</span>
+      </div>
+      <div class="chip urg-${urg}">
+        <span class="chip-lbl">Urgency</span>
+        <span class="chip-val"><span class="urgdot ${urg}"></span>${esc(data.urgency)}</span>
+      </div>
+      <div class="chip ${actClass(data.suggested_action)}">
+        <span class="chip-lbl">Suggested Action</span>
+        <span class="chip-val">${actIcon(data.suggested_action)}&nbsp;${esc(data.suggested_action)}</span>
+      </div>
+    </div>`;
+
+  wrap.appendChild(box);
+  chat.appendChild(wrap);
+  down();
+
+  const chips = box.querySelectorAll('.chip');
+
+  if (animate) {
+    chips.forEach((c, i) => {
+      setTimeout(() => { c.classList.add('on'); down(); }, 200 + i * 520);
+    });
+    setTimeout(() => addAI(data.response), 200 + chips.length * 520 + 380);
+  } else {
+    chips.forEach(c => c.classList.add('on'));
+    addAI(data.response, false);
+  }
+}
+
+// ── Icon helpers ───────────────────────────────
+function classIcon(c) {
+  return ({
+    'Maintenance Request': '🔧',
+    'Rent & Payment':      '💳',
+    'Lease Question':      '📋',
+    'Emergency':           '🚨',
+    'General FAQ':         '💬'
+  })[c] || '📌';
+}
+
+function actIcon(a) {
+  return ({ 'Auto-Respond': '✓', 'Escalate to PM': '↑', 'Log and Monitor': '○' })[a] || '→';
+}
+
+function actClass(a) {
+  return ({ 'Auto-Respond': 'act-auto', 'Escalate to PM': 'act-escalate', 'Log and Monitor': 'act-monitor' })[a] || '';
+}
+
+// ── Send flow ──────────────────────────────────
+async function send() {
+  const text = inp.value.trim();
+  if (!text || busy) return;
+
+  if (!API_KEY) { openModal(); return; }
+
+  busy = true;
+  sendBtn.disabled = true;
+  inp.value = '';
+  inp.style.height = 'auto';
+
+  addTenant(text);
+  showTyping();
+
+  try {
+    const [data] = await Promise.all([
+      callAPI(text),
+      pause(1700)   // minimum processing time for realism
+    ]);
+    hideTyping();
+    renderTriage(data);
+  } catch(e) {
+    hideTyping();
+    console.error('API error:', e.name, e.message, e);
+    let msg;
+    if (/401|invalid.*(api.?key|x-api-key)/i.test(e.message)) {
+      msg = 'Invalid API key — click the settings icon in the header to update it.';
+    } else if (e.name === 'TypeError' || /failed to fetch|network|cors|load/i.test(e.message)) {
+      if (location.protocol === 'file:') {
+        msg = 'Connection blocked: browsers prevent API calls from local files. Serve this file through a web server, or deploy to GitHub Pages and test from there.';
+      } else {
+        msg = 'Network error — could not reach the Anthropic API. Check your connection and try again.';
+      }
+    } else {
+      msg = `API error: ${e.message || 'unknown error'}`;
+    }
+    addAI(msg);
+  } finally {
+    busy = false;
+    sendBtn.disabled = false;
+    inp.focus();
+  }
+}
+
+// ── Anthropic API ──────────────────────────────
+async function callAPI(message) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: 600,
+      system: SYSTEM,
+      messages: [{ role: 'user', content: message }]
+    })
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${res.status}`);
+  }
+
+  const body = await res.json();
+  const raw  = body.content[0].text.trim();
+  // Strip markdown fences if model adds them
+  const json = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '').trim();
+  return JSON.parse(json);
+}
+
+// ── Modal ──────────────────────────────────────
+function openModal() {
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('keyInp').focus(), 60);
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function saveKey() {
+  const v = document.getElementById('keyInp').value.trim();
+  if (!v) return;
+  API_KEY = v;
+  sessionStorage.setItem('lsai_key', v);
+  document.getElementById('keyInp').value = '';
+  closeModal();
+}
+
+// ── Utils ──────────────────────────────────────
+function el(tag, cls) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  return e;
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function down() {
+  setTimeout(() => { chat.scrollTop = chat.scrollHeight; }, 40);
+}
+
+function pause(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+</script>
+
+</body>
+</html>
