@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-231RBKPQTB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-231RBKPQTB');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lone Star Property Group — Maintenance & Vendor Management</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:       #F5F0E8;
+  --dark:        #1A1A18;
+  --warm-gray:   #6B6560;
+  --accent:      #C8622A;
+  --accent-dim:  #A84A10;
+  --accent-bg:   #F7EDE5;
+  --section-bg:  #EEEAE0;
+  --border:      #D8D0C0;
+  --card:        #FFFFFF;
+  --success:     #2D5A3D;
+  --success-bg:  #EBF2EE;
+  --warn:        #A84A10;
+  --warn-bg:     #FDF0E6;
+  --danger:      #9E2525;
+  --danger-bg:   #FAE8E8;
+  --blue:        #2552A2;
+  --blue-bg:     #EBF0FB;
+  --mid-border:  #D4B86A;
+  --mid-bg:      #FDF8EC;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 400;
+  background: var(--cream);
+  color: var(--dark);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ───────────────────────────────────────── */
+.site-header {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 13px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.header-brand { display: flex; align-items: center; gap: 11px; }
+.logo-mark {
+  width: 34px; height: 34px;
+  background: var(--accent);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { display: block; }
+.brand-name {
+  font-size: 14px; font-weight: 600;
+  color: var(--cream); letter-spacing: 0.01em; line-height: 1.2;
+}
+.brand-sub {
+  font-size: 11px; color: rgba(245,240,232,0.5); letter-spacing: 0.02em;
+}
+.header-tag {
+  font-size: 11px; font-weight: 500;
+  color: rgba(245,240,232,0.45); letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ── APP LAYOUT ───────────────────────────────────── */
+.app-layout { flex: 1; display: flex; overflow: hidden; }
+
+/* ── PANELS ───────────────────────────────────────── */
+.panel { display: flex; flex-direction: column; overflow: hidden; }
+
+.panel-left {
+  width: 540px; min-width: 540px;
+  border-right: 1px solid var(--border);
+  background: var(--section-bg);
+}
+.panel-right { flex: 1; background: var(--cream); }
+
+.panel-hd {
+  padding: 16px 18px 13px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.panel-left .panel-hd  { background: var(--section-bg); }
+.panel-right .panel-hd { background: var(--cream); }
+
+.panel-title { font-size: 14px; font-weight: 600; color: var(--dark); letter-spacing: -0.01em; }
+.panel-sub   { font-size: 11.5px; color: var(--warm-gray); margin-top: 1px; }
+
+/* ── ADD BUTTON ───────────────────────────────────── */
+.btn-add {
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 6px;
+  padding: 7px 13px;
+  font-family: inherit; font-size: 12.5px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.btn-add:hover { background: var(--accent-dim); }
+
+/* ── WORK ORDER LIST ──────────────────────────────── */
+.wo-list {
+  overflow-y: auto; flex: 1;
+  padding: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.wo-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  cursor: pointer; position: relative;
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.wo-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(200,98,42,0.12);
+}
+.wo-card.is-selected {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  box-shadow: 0 2px 12px rgba(200,98,42,0.16);
+}
+/* inset stripe replaces ::before so overflow:hidden isn't needed */
+.wo-card.is-emergency {
+  box-shadow: inset 5px 0 0 var(--danger);
+}
+.wo-card.is-emergency.is-selected {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  box-shadow: inset 5px 0 0 var(--danger), 0 2px 12px rgba(158,37,37,0.12);
+}
+
+.wo-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+}
+.wo-id {
+  font-size: 12px; font-weight: 500;
+  color: var(--warm-gray); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.wo-badge {
+  font-size: 12px; font-weight: 500;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: 0.02em;
+}
+.badge-new        { background: var(--blue-bg);    color: var(--blue);    }
+.badge-inprogress { background: var(--warn-bg);    color: var(--warn);    }
+.badge-pending    { background: var(--success-bg); color: var(--success); }
+.badge-emergency  { background: var(--danger-bg);  color: var(--danger); font-weight: 600; }
+
+.wo-location { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 7px; }
+.wo-desc {
+  font-size: 13.5px; color: var(--warm-gray);
+  line-height: 1.6; margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.wo-card.is-selected .wo-desc {
+  display: block; overflow: visible; -webkit-line-clamp: unset; margin-bottom: 18px;
+}
+.wo-foot {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.wo-trade-pill {
+  font-size: 12.5px; font-weight: 500;
+  padding: 5px 13px; border-radius: 20px;
+  background: var(--section-bg); color: var(--dark); border: 1px solid var(--border);
+}
+.wo-assigned-indicator {
+  font-size: 12px; font-weight: 500;
+  padding: 5px 13px; border-radius: 20px;
+  background: var(--success-bg); color: var(--success);
+  border: 1px solid rgba(45,90,61,0.2);
+}
+.wo-date { font-size: 12.5px; color: var(--warm-gray); }
+
+/* ── WO MANAGEMENT ACTIONS (selected card only) ───── */
+.wo-actions {
+  margin-top: 20px; padding-top: 20px;
+  border-top: 1.5px solid rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.wo-action-row { display: flex; align-items: center; gap: 14px; }
+.wo-action-lbl {
+  font-size: 13px; font-weight: 500;
+  color: var(--warm-gray); width: 70px; flex-shrink: 0;
+}
+.wo-status-sel {
+  font-family: inherit; font-size: 13.5px; font-weight: 400;
+  padding: 10px 36px 10px 14px; border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background-color: var(--card); color: var(--dark);
+  cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  flex: 1;
+}
+.wo-status-sel:focus { outline: none; border-color: var(--accent); }
+.wo-assigned-chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--success-bg); border: 1px solid rgba(45,90,61,0.25);
+  border-radius: 8px; padding: 9px 12px 9px 16px;
+  font-size: 13.5px; color: var(--success); font-weight: 500;
+  flex: 1;
+}
+.chip-x {
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; line-height: 1; color: var(--warm-gray); padding: 0;
+  margin-left: auto;
+}
+.chip-x:hover { color: var(--danger); }
+.wo-unassigned-hint {
+  font-size: 13.5px; color: var(--warm-gray); font-style: italic;
+  padding: 10px 0;
+}
+
+/* ── VENDOR PANEL HEADER ──────────────────────────── */
+.vendor-hd-inner { display: flex; align-items: center; gap: 9px; }
+.trade-badge {
+  font-size: 11.5px; font-weight: 500;
+  padding: 3px 10px; border-radius: 20px;
+  background: var(--accent); color: #fff; display: none;
+}
+.vendor-count { font-size: 12px; color: var(--warm-gray); white-space: nowrap; flex-shrink: 0; }
+
+/* ── VENDOR GRID ──────────────────────────────────── */
+.vendor-grid {
+  overflow-y: auto; flex: 1; padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 12px; align-content: start;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1/-1;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 70px 20px; text-align: center; gap: 11px;
+}
+.empty-icon {
+  width: 54px; height: 54px;
+  background: var(--section-bg); border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.empty-title { font-size: 14px; font-weight: 600; color: var(--dark); }
+.empty-desc  { font-size: 13px; color: var(--warm-gray); max-width: 260px; line-height: 1.5; }
+
+/* ── VENDOR CARD ──────────────────────────────────── */
+.vendor-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 17px;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.vendor-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+.vendor-card.is-top { border-color: var(--accent); }
+
+.rec-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--accent); color: #fff;
+  font-size: 10.5px; font-weight: 600;
+  padding: 5px 13px; border-bottom-left-radius: 10px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+
+.vc-header {
+  display: flex; align-items: flex-start; gap: 11px;
+  margin-bottom: 11px; padding-top: 2px;
+}
+.vc-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--section-bg); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: var(--dark);
+  flex-shrink: 0; letter-spacing: 0.03em;
+}
+.vc-info { flex: 1; min-width: 0; }
+.vc-name {
+  font-size: 14px; font-weight: 600; color: var(--dark);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vc-company { font-size: 11.5px; color: var(--warm-gray); margin-top: 1px; }
+
+.vc-score-wrap {
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.score-circle {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 2.5px solid var(--border); background: var(--section-bg);
+}
+.score-circle.hi  { border-color: var(--success); background: var(--success-bg); }
+.score-circle.mid { border-color: var(--mid-border); background: var(--mid-bg); }
+.score-num   { font-size: 17px; font-weight: 700; color: var(--dark); line-height: 1; }
+.score-denom { font-size: 9px; color: var(--warm-gray); line-height: 1.3; }
+.score-rank  { font-size: 10px; color: var(--warm-gray); font-weight: 500; }
+
+/* Trade tags */
+.vc-trades { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.ttag {
+  font-size: 10.5px; padding: 2px 8px; border-radius: 20px;
+  background: var(--section-bg); color: var(--warm-gray); border: 1px solid var(--border);
+}
+.ttag.primary {
+  background: var(--accent-bg); color: var(--accent); border-color: #E0B89A; font-weight: 500;
+}
+.ttag.active-trade {
+  background: var(--dark); color: var(--cream); border-color: var(--dark); font-weight: 500;
+}
+
+/* Metrics */
+.vc-metrics { display: flex; flex-direction: column; gap: 6px; margin-bottom: 13px; }
+.metric-row { display: flex; align-items: center; gap: 7px; }
+.metric-lbl { font-size: 11.5px; color: var(--warm-gray); width: 165px; flex-shrink: 0; display: flex; align-items: center; gap: 5px; }
+.metric-wt  { font-size: 10px; color: var(--border); font-weight: 400; }
+.metric-track { flex: 1; height: 5px; background: var(--section-bg); border-radius: 3px; overflow: hidden; }
+.metric-fill  { height: 100%; border-radius: 3px; background: var(--accent); }
+.metric-pts   { font-size: 11px; font-weight: 500; color: var(--dark); width: 34px; text-align: right; flex-shrink: 0; }
+
+/* Vendor card footer */
+.vc-foot {
+  padding-top: 11px; border-top: 1px solid var(--section-bg);
+  display: flex; flex-direction: column; gap: 9px;
+}
+.vc-foot-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.vc-jobs { font-size: 12px; color: var(--warm-gray); }
+.vc-jobs strong { color: var(--dark); font-weight: 600; }
+
+.vc-assign-btn {
+  font-family: inherit; font-size: 11.5px; font-weight: 500;
+  padding: 5px 13px; border-radius: 6px; cursor: pointer;
+  border: 1.5px solid var(--accent); color: var(--accent); background: none;
+  transition: background 0.14s, color 0.14s; white-space: nowrap; flex-shrink: 0;
+}
+.vc-assign-btn:hover { background: var(--accent); color: #fff; }
+.vc-assign-btn.is-assigned {
+  border-color: var(--success); color: var(--success); background: var(--success-bg); cursor: pointer;
+}
+.vc-assign-btn.is-assigned:hover { background: #ddf0e5; }
+
+.vc-contact { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.vc-contact-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; color: var(--warm-gray);
+  text-decoration: none; transition: color 0.14s; white-space: nowrap;
+}
+.vc-contact-link:hover { color: var(--accent); }
+.vc-contact-link svg { flex-shrink: 0; }
+
+/* ── MODAL ────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,26,24,0.5); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 300; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.18s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--card); border-radius: 14px;
+  width: 100%; max-width: 468px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18); overflow: hidden;
+}
+.modal-hd {
+  padding: 19px 22px 15px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-title { font-size: 15px; font-weight: 600; color: var(--dark); }
+.modal-close {
+  background: none; border: none; font-size: 21px; color: var(--warm-gray);
+  cursor: pointer; line-height: 1; width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px; transition: background 0.12s;
+}
+.modal-close:hover { background: var(--section-bg); }
+.modal-body { padding: 18px 22px 6px; }
+.form-grp { margin-bottom: 15px; }
+.form-lbl { display: block; font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 5px; }
+.form-ctrl {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: inherit; font-size: 13.5px; color: var(--dark);
+  background: var(--cream); transition: border-color 0.14s; appearance: none;
+}
+.form-ctrl:focus { outline: none; border-color: var(--accent); }
+select.form-ctrl {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  padding-right: 32px; cursor: pointer;
+}
+textarea.form-ctrl { resize: vertical; min-height: 76px; line-height: 1.5; }
+.modal-ft { padding: 14px 22px 20px; display: flex; gap: 9px; justify-content: flex-end; }
+.btn-cancel {
+  background: none; border: 1.5px solid var(--border); color: var(--warm-gray);
+  border-radius: 8px; padding: 8px 17px;
+  font-family: inherit; font-size: 13.5px; cursor: pointer;
+  transition: border-color 0.14s, color 0.14s;
+}
+.btn-cancel:hover { border-color: var(--dark); color: var(--dark); }
+.btn-submit {
+  background: var(--accent); border: none; color: #fff;
+  border-radius: 8px; padding: 8px 20px;
+  font-family: inherit; font-size: 13.5px; font-weight: 500;
+  cursor: pointer; transition: background 0.14s;
+}
+.btn-submit:hover { background: var(--accent-dim); }
+
+/* ── SCROLLBARS ───────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--warm-gray); }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 960px) {
+  body { height: auto; overflow: auto; }
+  .app-layout { flex-direction: column; overflow: visible; }
+  .panel-left { width: 100%; min-width: 0; border-right: none; border-bottom: 1px solid var(--border); max-height: 65vh; }
+  .panel-right { min-height: 420px; }
+  .vendor-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .panel-left { max-height: 48vh; }
+  .metric-lbl { width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-brand">
+    <div class="logo-mark">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">Lone Star Property Group</div>
+      <div class="brand-sub">Maintenance &amp; Vendor Management</div>
+    </div>
+  </div>
+  <div class="header-tag">AI-Powered Demo</div>
+</header>
+
+<!-- ── APP LAYOUT ──────────────────────────────────── -->
+<div class="app-layout">
+
+  <!-- LEFT: Work Orders -->
+  <div class="panel panel-left">
+    <div class="panel-hd">
+      <div>
+        <div class="panel-title">Open Work Orders</div>
+        <div class="panel-sub" id="wo-sub">6 open &middot; click to filter vendors</div>
+      </div>
+      <button class="btn-add" onclick="openModal()">+ Add Work Order</button>
+    </div>
+    <div class="wo-list" id="wo-list"></div>
+  </div>
+
+  <!-- RIGHT: Vendor Scorecard -->
+  <div class="panel panel-right">
+    <div class="panel-hd">
+      <div class="vendor-hd-inner">
+        <div>
+          <div class="panel-title">Vendor Scorecard</div>
+          <div class="panel-sub" id="vendor-sub">Select a work order to filter vendors by trade</div>
+        </div>
+        <span class="trade-badge" id="trade-badge"></span>
+      </div>
+      <span class="vendor-count" id="vendor-count"></span>
+    </div>
+    <div class="vendor-grid" id="vendor-grid"></div>
+  </div>
+
+</div>
+
+<!-- ── MODAL ────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-title">Add Work Order</div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <form id="wo-form" onsubmit="submitWO(event)">
+      <div class="modal-body">
+        <div class="form-grp">
+          <label class="form-lbl">Property</label>
+          <select class="form-ctrl" name="property" required>
+            <option value="">Select property…</option>
+            <option>Riverside Commons</option>
+            <option>Oak Creek Apartments</option>
+            <option>Sunset Ridge</option>
+            <option>Mesquite Manor</option>
+            <option>Hill Country Flats</option>
+            <option>Alamo Heights Units</option>
+            <option>Breckenridge Park</option>
+            <option>Stone Oak Place</option>
+          </select>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Unit Number</label>
+          <input class="form-ctrl" type="text" name="unit" placeholder="e.g. 204" required>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Issue Description</label>
+          <textarea class="form-ctrl" name="description" placeholder="Describe the maintenance issue…" required></textarea>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl">Trade Type</label>
+          <select class="form-ctrl" name="trade" required>
+            <option value="">Select trade type…</option>
+            <option>Plumbing</option>
+            <option>HVAC</option>
+            <option>Electrical</option>
+            <option>Flooring</option>
+            <option>Drywall</option>
+            <option>Painting</option>
+            <option>Roofing</option>
+            <option>Appliance Repair</option>
+            <option>General Maintenance</option>
+            <option>Landscaping</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn-submit">Add Work Order</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ── DATA ─────────────────────────────────────────── */
+
+/* p = performance percentages (0–100) per metric
+   Score = r×25% + c×25% + cv×20% + cb×20% + specialty×10% */
+const VENDORS = [
+  {
+    id:'v1', name:'Carlos Mendez', company:'Mendez Plumbing & Drain',
+    phone:'(210) 555-0142', email:'carlos@mendezplumbing.com',
+    primary:['Plumbing'], secondary:['General Maintenance'],
+    p:{ r:92, c:88, cv:85, cb:90 }, jobs:47
+  },
+  {
+    id:'v2', name:'Tom Briscoe', company:'Briscoe HVAC Solutions',
+    phone:'(210) 555-0387', email:'tom@briscoehvac.com',
+    primary:['HVAC'], secondary:['Electrical','General Maintenance'],
+    p:{ r:96, c:84, cv:80, cb:85 }, jobs:38
+  },
+  {
+    id:'v3', name:'Rick Holloway', company:'Holloway Electric',
+    phone:'(830) 555-0214', email:'rick@hollowayelectric.com',
+    primary:['Electrical'], secondary:['General Maintenance'],
+    p:{ r:80, c:76, cv:90, cb:80 }, jobs:29
+  },
+  {
+    id:'v4', name:'Maria Santos', company:'Santos Floor & Tile',
+    phone:'(210) 555-0763', email:'maria@santosfloor.com',
+    primary:['Flooring'], secondary:['Drywall','Painting'],
+    p:{ r:88, c:80, cv:95, cb:95 }, jobs:22
+  },
+  {
+    id:'v5', name:'Dave Kowalski', company:'Lone Star Drywall & Paint',
+    phone:'(512) 555-0491', email:'dave@lonestardrw.com',
+    primary:['Drywall','Painting'], secondary:['General Maintenance'],
+    p:{ r:72, c:68, cv:75, cb:70 }, jobs:31
+  },
+  {
+    id:'v6', name:'Joe Trevino', company:'Trevino Roofing Co.',
+    phone:'(210) 555-0628', email:'joe@trevinoroofing.com',
+    primary:['Roofing'], secondary:['Drywall'],
+    p:{ r:76, c:72, cv:80, cb:75 }, jobs:17
+  },
+  {
+    id:'v7', name:'Sandra Kim', company:'QuickFix Appliance Repair',
+    phone:'(210) 555-0815', email:'sandra@quickfixsa.com',
+    primary:['Appliance Repair'], secondary:['General Maintenance'],
+    p:{ r:100, c:92, cv:90, cb:95 }, jobs:41
+  },
+  {
+    id:'v8', name:'Bob Garrett', company:'Garrett General Contracting',
+    phone:'(830) 555-0173', email:'bob@garrettcontracting.com',
+    primary:['General Maintenance'], secondary:['Plumbing','Landscaping','Appliance Repair'],
+    p:{ r:64, c:60, cv:65, cb:55 }, jobs:44
+  },
+  {
+    id:'v9', name:'Luis Garza', company:'Garza Lawn & Landscape',
+    phone:'(210) 555-0956', email:'luis@garzalandscape.com',
+    primary:['Landscaping'], secondary:['General Maintenance'],
+    p:{ r:84, c:88, cv:95, cb:90 }, jobs:26
+  },
+  {
+    id:'v10', name:'Phil Nguyen', company:'Nguyen HVAC & Cooling',
+    phone:'(512) 555-0344', email:'phil@nguyenhvac.com',
+    primary:['HVAC'], secondary:['Electrical'],
+    p:{ r:60, c:64, cv:60, cb:60 }, jobs:19
+  },
+  {
+    id:'v11', name:'Chris Wheeler', company:'Wheeler Electric & Panel',
+    phone:'(210) 555-0537', email:'chris@wheelerelectric.com',
+    primary:['Electrical'], secondary:['HVAC','General Maintenance'],
+    p:{ r:88, c:80, cv:85, cb:75 }, jobs:14
+  },
+  {
+    id:'v12', name:'Rosa Delgado', company:'Delgado Painting & Interiors',
+    phone:'(210) 555-0289', email:'rosa@delgadopainting.com',
+    primary:['Painting'], secondary:['Drywall','Flooring'],
+    p:{ r:92, c:84, cv:90, cb:85 }, jobs:8
+  },
+  {
+    id:'v13', name:'Mark Hutchins', company:'All-Star Plumbing',
+    phone:'(830) 555-0702', email:'mark@allstarplumbing.com',
+    primary:['Plumbing'], secondary:['HVAC'],
+    p:{ r:48, c:56, cv:50, cb:45 }, jobs:11
+  },
+  {
+    id:'v14', name:'Frank Solis', company:'Solis Roofing & Repair',
+    phone:'(210) 555-0461', email:'frank@solisroofing.com',
+    primary:['Roofing'], secondary:['Drywall','General Maintenance'],
+    p:{ r:80, c:76, cv:75, cb:80 }, jobs:4
+  }
+];
+
+let workOrders = [
+  {
+    id:'WO-001', property:'Riverside Commons', unit:'112',
+    description:'AC unit not cooling — tenant reported interior temp exceeding 90°F',
+    trade:'HVAC', date:'2026-06-01', status:'Emergency', assignedVendorId: null
+  },
+  {
+    id:'WO-002', property:'Oak Creek Apartments', unit:'34B',
+    description:'Kitchen sink slow drain and garbage disposal not running',
+    trade:'Plumbing', date:'2026-05-28', status:'In Progress', assignedVendorId: null
+  },
+  {
+    id:'WO-003', property:'Mesquite Manor', unit:'7',
+    description:'Bedroom circuit breaker trips repeatedly under normal load',
+    trade:'Electrical', date:'2026-05-30', status:'New', assignedVendorId: null
+  },
+  {
+    id:'WO-004', property:'Hill Country Flats', unit:'204',
+    description:'Interior drywall crack running from ceiling to window frame',
+    trade:'Drywall', date:'2026-05-29', status:'In Progress', assignedVendorId: null
+  },
+  {
+    id:'WO-005', property:'Stone Oak Place', unit:'15',
+    description:'Refrigerator not cooling — tenant reports food spoiling',
+    trade:'Appliance Repair', date:'2026-06-02', status:'New', assignedVendorId: null
+  },
+  {
+    id:'WO-006', property:'Breckenridge Park', unit:'8',
+    description:'Front yard sprinkler head broken, flooding the main sidewalk',
+    trade:'Landscaping', date:'2026-06-01', status:'Pending Confirmation', assignedVendorId: null
+  }
+];
+
+let selectedId = 'WO-001';
+let woCounter  = workOrders.length;
+
+/* ── SCORING ──────────────────────────────────────── */
+
+function specialtyPct(v, trade) {
+  if (v.primary.includes(trade))   return 100;
+  if (v.secondary.includes(trade)) return 50;
+  return 0;
+}
+function totalScore(v, trade) {
+  const spec = specialtyPct(v, trade);
+  return Math.round(
+    v.p.r  * 0.25 +
+    v.p.c  * 0.25 +
+    v.p.cv * 0.20 +
+    v.p.cb * 0.20 +
+    spec   * 0.10
+  );
+}
+function qualifies(v, trade) {
+  return v.primary.includes(trade) || v.secondary.includes(trade);
+}
+
+/* ── HELPERS ──────────────────────────────────────── */
+
+function fmtDate(s) {
+  const d = new Date(s + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+function statusBadgeClass(status) {
+  const map = {
+    'Emergency':'badge-emergency', 'In Progress':'badge-inprogress',
+    'Pending Confirmation':'badge-pending', 'New':'badge-new'
+  };
+  return map[status] || 'badge-new';
+}
+function initials(name) {
+  return name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+}
+function scoreClass(s) {
+  if (s >= 80) return 'hi';
+  if (s >= 65) return 'mid';
+  return '';
+}
+function vendorById(id) {
+  return VENDORS.find(v => v.id === id) || null;
+}
+
+/* ── RENDER WORK ORDERS ───────────────────────────── */
+
+const URGENCY = { 'Emergency': 0, 'New': 1, 'In Progress': 2, 'Pending Confirmation': 3 };
+
+function sortedWOs() {
+  return [...workOrders].sort((a, b) => {
+    const u = (URGENCY[a.status] ?? 9) - (URGENCY[b.status] ?? 9);
+    if (u !== 0) return u;
+    return new Date(a.date) - new Date(b.date);
+  });
+}
+
+function renderWOs() {
+  const list = document.getElementById('wo-list');
+  document.getElementById('wo-sub').textContent =
+    `${workOrders.length} open · click to filter vendors`;
+
+  list.innerHTML = sortedWOs().map(wo => {
+    const isSelected  = wo.id === selectedId;
+    const isEmergency = wo.status === 'Emergency';
+    const assigned    = wo.assignedVendorId ? vendorById(wo.assignedVendorId) : null;
+
+    const assignedIndicator = assigned
+      ? `<span class="wo-assigned-indicator">✓ ${assigned.name}</span>`
+      : '';
+
+    const actionsHTML = isSelected ? buildWOActions(wo, assigned) : '';
+
+    return `
+      <div class="wo-card${isSelected ? ' is-selected' : ''}${isEmergency ? ' is-emergency' : ''}"
+           onclick="selectWO('${wo.id}')">
+        <div class="wo-top">
+          <span class="wo-id">${wo.id}</span>
+          <span class="wo-badge ${statusBadgeClass(wo.status)}">${wo.status}</span>
+        </div>
+        <div class="wo-location">${wo.property} &mdash; Unit ${wo.unit}</div>
+        <div class="wo-desc">${wo.description}</div>
+        <div class="wo-foot">
+          <span class="wo-trade-pill">${wo.trade}</span>
+          ${assignedIndicator}
+          <span class="wo-date">${fmtDate(wo.date)}</span>
+        </div>
+        ${actionsHTML}
+      </div>`;
+  }).join('');
+}
+
+function buildWOActions(wo, assigned) {
+  const statuses = ['New','In Progress','Pending Confirmation','Emergency'];
+  const opts = statuses.map(s =>
+    `<option value="${s}"${wo.status === s ? ' selected' : ''}>${s}</option>`
+  ).join('');
+
+  const vendorSection = assigned
+    ? `<div class="wo-assigned-chip">
+         <span>${initials(assigned.name)}</span>
+         <span>${assigned.name}</span>
+         <button class="chip-x" title="Remove assignment" onclick="unassignVendor()">&#x2715;</button>
+       </div>`
+    : `<span class="wo-unassigned-hint">Select from vendor scorecard →</span>`;
+
+  return `
+    <div class="wo-actions" onclick="event.stopPropagation()">
+      <div class="wo-action-row">
+        <span class="wo-action-lbl">Status</span>
+        <select class="wo-status-sel" onchange="changeStatus('${wo.id}', this.value)">${opts}</select>
+      </div>
+      <div class="wo-action-row">
+        <span class="wo-action-lbl">Vendor</span>
+        ${vendorSection}
+      </div>
+    </div>`;
+}
+
+/* ── RENDER VENDORS ───────────────────────────────── */
+
+function renderVendors(trade) {
+  const grid  = document.getElementById('vendor-grid');
+  const badge = document.getElementById('trade-badge');
+  const sub   = document.getElementById('vendor-sub');
+  const count = document.getElementById('vendor-count');
+
+  if (!trade) {
+    badge.style.display = 'none';
+    sub.textContent = 'Select a work order to filter vendors by trade';
+    count.textContent = '';
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B6560" stroke-width="1.5" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="empty-title">No work order selected</div>
+        <div class="empty-desc">Click any work order on the left to see vendors ranked for that trade type.</div>
+      </div>`;
+    return;
+  }
+
+  badge.textContent   = trade;
+  badge.style.display = 'inline-block';
+
+  const selectedWO       = workOrders.find(w => w.id === selectedId);
+  const assignedVendorId = selectedWO ? (selectedWO.assignedVendorId || null) : null;
+
+  const ranked = VENDORS
+    .filter(v => qualifies(v, trade))
+    .map(v => ({ ...v, score: totalScore(v, trade) }))
+    .sort((a, b) => b.score - a.score || b.jobs - a.jobs);
+
+  sub.textContent   = `Vendors qualified for ${trade} work`;
+  count.textContent = `${ranked.length} vendor${ranked.length !== 1 ? 's' : ''} ranked`;
+
+  if (!ranked.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-title">No vendors on roster</div>
+        <div class="empty-desc">No vendors are currently qualified for ${trade} work.</div>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = ranked.map((v, i) => {
+    const isTop      = i === 0;
+    const isAssigned = assignedVendorId === v.id;
+    const specPct    = specialtyPct(v, trade);
+
+    const metrics = [
+      { lbl:'Response Rate',          wt:'25%', pct: v.p.r   },
+      { lbl:'Completion vs Estimate', wt:'25%', pct: v.p.c   },
+      { lbl:'Cost vs Estimate',       wt:'20%', pct: v.p.cv  },
+      { lbl:'Callback Rate',          wt:'20%', pct: v.p.cb  },
+      { lbl:'Specialty Match',        wt:'10%', pct: specPct },
+    ];
+
+    const metricsHTML = metrics.map(m => `
+      <div class="metric-row">
+        <div class="metric-lbl">${m.lbl} <span class="metric-wt">${m.wt}</span></div>
+        <div class="metric-track">
+          <div class="metric-fill" style="width:${m.pct}%"></div>
+        </div>
+        <div class="metric-pts">${m.pct}%</div>
+      </div>`).join('');
+
+    const allTrades = [
+      ...v.primary.map(t   => ({ t, isPrimary: true })),
+      ...v.secondary.map(t => ({ t, isPrimary: false }))
+    ];
+    const tagsHTML = allTrades.map(({ t, isPrimary }) => {
+      const cls = t === trade ? 'active-trade' : (isPrimary ? 'primary' : '');
+      return `<span class="ttag ${cls}">${t}</span>`;
+    }).join('');
+
+    const assignLabel  = isAssigned ? '&#10003; Assigned' : 'Assign to WO';
+    const assignAction = isAssigned ? 'unassignVendor()' : `assignVendor('${v.id}')`;
+
+    return `
+      <div class="vendor-card${isTop ? ' is-top' : ''}">
+        ${isTop ? '<div class="rec-badge">&#9733; Recommended</div>' : ''}
+        <div class="vc-header">
+          <div class="vc-avatar">${initials(v.name)}</div>
+          <div class="vc-info">
+            <div class="vc-name">${v.name}</div>
+            <div class="vc-company">${v.company}</div>
+          </div>
+          <div class="vc-score-wrap">
+            <div class="score-circle ${scoreClass(v.score)}">
+              <div class="score-num">${v.score}</div>
+              <div class="score-denom">%</div>
+            </div>
+            <div class="score-rank">#${i + 1} ranked</div>
+          </div>
+        </div>
+        <div class="vc-trades">${tagsHTML}</div>
+        <div class="vc-metrics">${metricsHTML}</div>
+        <div class="vc-foot">
+          <div class="vc-foot-row">
+            <div class="vc-jobs"><strong>${v.jobs}</strong> jobs completed for Lone Star</div>
+            <button class="vc-assign-btn${isAssigned ? ' is-assigned' : ''}"
+                    onclick="${assignAction}">${assignLabel}</button>
+          </div>
+          <div class="vc-contact">
+            <a href="tel:${v.phone}" class="vc-contact-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.74a16 16 0 006.17 6.17l1.21-1.21a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              ${v.phone}
+            </a>
+            <a href="mailto:${v.email}" class="vc-contact-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              ${v.email}
+            </a>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ── ACTIONS ──────────────────────────────────────── */
+
+function selectWO(id) {
+  selectedId = id;
+  renderWOs();
+  const wo = workOrders.find(w => w.id === id);
+  if (wo) renderVendors(wo.trade);
+}
+
+function changeStatus(woId, newStatus) {
+  const wo = workOrders.find(w => w.id === woId);
+  if (!wo) return;
+  wo.status = newStatus;
+  renderWOs();
+}
+
+function assignVendor(vendorId) {
+  const wo = workOrders.find(w => w.id === selectedId);
+  if (!wo) return;
+  wo.assignedVendorId = vendorId;
+  if (wo.status === 'New') wo.status = 'In Progress';
+  renderWOs();
+  renderVendors(wo.trade);
+}
+
+function unassignVendor() {
+  const wo = workOrders.find(w => w.id === selectedId);
+  if (!wo) return;
+  wo.assignedVendorId = null;
+  renderWOs();
+  renderVendors(wo.trade);
+}
+
+/* ── MODAL ────────────────────────────────────────── */
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('wo-form').reset();
+}
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitWO(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  woCounter++;
+  const newWO = {
+    id:              `WO-${String(woCounter).padStart(3,'0')}`,
+    property:        fd.get('property'),
+    unit:            fd.get('unit'),
+    description:     fd.get('description'),
+    trade:           fd.get('trade'),
+    date:            new Date().toISOString().slice(0,10),
+    status:          'New',
+    assignedVendorId: null
+  };
+  workOrders.unshift(newWO);
+  closeModal();
+  selectWO(newWO.id);
+}
+
+/* ── INIT ─────────────────────────────────────────── */
+renderWOs();
+renderVendors('HVAC');
+</script>
+</body>
+</html>
