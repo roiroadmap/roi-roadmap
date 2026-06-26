@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-231RBKPQTB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-231RBKPQTB');
+</script>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://www.google-analytics.com https://region1.google-analytics.com;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lone Star Property Group — Owner Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #F5F0E8;
+      --dark:         #1A1A18;
+      --warm-gray:    #6B6560;
+      --accent:       #C8622A;
+      --accent-light: #E8936A;
+      --section-bg:   #EEEAE0;
+      --border:       #D8D0C0;
+      --card:         #FFFFFF;
+      --success:      #2D5A3D;
+      --success-bg:   #EBF2EE;
+      --warn:         #A84A10;
+      --warn-bg:      #FDF0E6;
+      --danger:       #9E2525;
+      --danger-bg:    #FAE8E8;
+      --blue:         #2552A2;
+      --blue-bg:      #EBF0FB;
+      --pre:          #5B3D9E;
+      --pre-bg:       #F2EDFC;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    .site-header {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg { width: 20px; height: 20px; }
+
+    .logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.4);
+      font-weight: 400;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .sync-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(245,240,232,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    .sync-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #5CB878;
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .header-date {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.3);
+    }
+
+    /* ── MAIN ─────────────────────────────────────────── */
+    .main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 36px 20px 56px;
+    }
+
+    /* ── SECTION LABELS (matches SampleROIRoadmap style) */
+    .section-label {
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 400;
+      margin-bottom: 16px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .section-label:first-child { margin-top: 0; }
+
+    .section-meta {
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      letter-spacing: 0.08em;
+      margin-left: auto;
+      font-weight: 400;
+    }
+
+    /* ── KPI CARDS ───────────────────────────────────── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 640px) {
+      .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .kpi-card {
+      background: var(--card);
+      padding: 28px 24px 22px;
+    }
+
+    .kpi-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .kpi-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--warm-gray);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .kpi-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      border-radius: 2px;
+      border: 1px solid;
+    }
+
+    .tag-green  { background: var(--success-bg); color: var(--success); border-color: var(--success-bg); }
+    .tag-warn   { background: var(--warn-bg);    color: var(--warn);    border-color: var(--warn-bg);    }
+    .tag-danger { background: var(--danger-bg);  color: var(--danger);  border-color: var(--danger-bg);  }
+
+    /* ── CARD BASE ───────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .card-head {
+      padding: 18px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-badge {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 400;
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .card-body { padding: 20px 24px; }
+
+    /* ── AI NARRATIVE ────────────────────────────────── */
+    .ai-card {
+      background: var(--dark);
+      border-color: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 90% 40%, rgba(200,98,42,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 50% at 5% 90%, rgba(196,163,90,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .ai-card .card-head {
+      border-bottom-color: rgba(255,255,255,0.07);
+      position: relative;
+      z-index: 1;
+    }
+
+    .ai-card-label {
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ai-card-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent-light);
+      flex-shrink: 0;
+    }
+
+    .ai-card-date {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.25);
+    }
+
+    .ai-body {
+      padding: 32px 24px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ai-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+
+    .ai-headline span {
+      color: var(--accent-light);
+    }
+
+    .ai-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.7);
+      font-weight: 300;
+      max-width: 780px;
+    }
+
+    .ai-text p { margin-bottom: 16px; }
+    .ai-text p:last-child { margin-bottom: 0; }
+
+    .ai-text strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .ai-text .hl {
+      color: var(--accent-light);
+      font-weight: 500;
+    }
+
+    .ai-foot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(245,240,232,0.25);
+      position: relative;
+      z-index: 1;
+    }
+
+    .ai-avatar {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── ALERTS ──────────────────────────────────────── */
+    .alert-list { padding: 0 24px; }
+
+    .alert-item {
+      display: flex;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--section-bg);
+      align-items: flex-start;
+    }
+
+    .alert-item:last-child { border-bottom: none; }
+
+    .alert-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .alert-icon.danger { background: var(--danger-bg); }
+    .alert-icon.warn   { background: var(--warn-bg); }
+
+    .alert-body { flex: 1; }
+
+    .alert-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .alert-desc {
+      font-size: 13px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .alert-cta {
+      display: inline-block;
+      margin-top: 7px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── TWO-COLUMN ──────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .two-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    .two-col .card {
+      border: none;
+    }
+
+    /* ── PROGRESS BAR ────────────────────────────────── */
+    .prog-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--warm-gray);
+      margin-bottom: 7px;
+    }
+
+    .prog-header strong {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .prog-track {
+      background: var(--section-bg);
+      height: 6px;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .prog-fill {
+      height: 100%;
+      transition: width 1s ease;
+    }
+
+    /* ── RENT COLLECTION ─────────────────────────────── */
+    .coll-summary {
+      display: flex;
+      gap: 28px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--section-bg);
+      flex-wrap: wrap;
+    }
+
+    .coll-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .coll-lbl {
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-top: 5px;
+      font-weight: 400;
+    }
+
+    .prop-row {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--section-bg);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .prop-row:last-child { border-bottom: none; }
+
+    .prop-info { flex: 1; min-width: 0; }
+
+    .prop-name {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .prop-addr {
+      font-size: 11px;
+      color: var(--warm-gray);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 300;
+    }
+
+    .prop-bar-col {
+      flex: 1;
+      min-width: 70px;
+      max-width: 130px;
+    }
+
+    .prop-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      margin-bottom: 5px;
+      font-weight: 300;
+    }
+
+    .prop-amounts { text-align: right; min-width: 78px; }
+
+    .prop-collected {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .prop-total {
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    /* ── VACANCY ─────────────────────────────────────── */
+    .vac-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--section-bg);
+    }
+
+    .vac-row:last-child { border-bottom: none; }
+
+    .vac-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .vac-prop-name {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .vac-stat {
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    .unit-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 7px;
+    }
+
+    .u-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      cursor: default;
+      transition: transform 0.1s;
+    }
+
+    .u-dot:hover { transform: scale(1.35); }
+    .u-dot.occupied  { background: #3A7D5C; }
+    .u-dot.vacant    { background: #B03030; }
+    .u-dot.preleased { background: #6B50B8; }
+
+    .vac-detail {
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .dot-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 14px 0 2px;
+      border-top: 1px solid var(--section-bg);
+      margin-top: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      color: var(--warm-gray);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    /* ── WORK ORDERS ─────────────────────────────────── */
+    .wo-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--section-bg);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .wo-item:last-child { border-bottom: none; }
+
+    .wo-badge {
+      font-size: 9.5px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border: 1px solid;
+    }
+
+    .wo-badge.open      { background: var(--warn-bg);    color: var(--warn);    border-color: var(--warn-bg); }
+    .wo-badge.progress  { background: var(--blue-bg);    color: var(--blue);    border-color: var(--blue-bg); }
+    .wo-badge.completed { background: var(--success-bg); color: var(--success); border-color: var(--success-bg); }
+    .wo-badge.scheduled { background: var(--pre-bg);     color: var(--pre);     border-color: var(--pre-bg); }
+
+    .wo-info { flex: 1; min-width: 0; }
+
+    .wo-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+
+    .wo-meta {
+      font-size: 11px;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    .wo-cost-col { text-align: right; white-space: nowrap; }
+
+    .wo-cost {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .wo-cost-lbl {
+      font-size: 10px;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    .wo-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 4px;
+      border-top: 1px solid var(--border);
+      margin-top: 6px;
+    }
+
+    .wo-total-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+
+    .wo-total-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--warn);
+      letter-spacing: -0.5px;
+    }
+
+    /* ── FINANCIALS ──────────────────────────────────── */
+    .fin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--section-bg);
+      font-size: 13.5px;
+    }
+
+    .fin-row:last-child { border-bottom: none; }
+
+    .fin-label { color: var(--warm-gray); font-weight: 300; }
+    .fin-label.indent { padding-left: 16px; font-size: 13px; }
+
+    .fin-val { font-weight: 500; color: var(--dark); }
+    .fin-val.neg { color: var(--danger); }
+    .fin-val.pos { color: var(--success); }
+
+    hr.fin-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 8px 0;
+    }
+
+    .fin-group-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      padding: 6px 0 2px;
+      font-weight: 400;
+    }
+
+    .fin-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 4px;
+      border-top: 1px solid var(--border);
+      margin-top: 4px;
+    }
+
+    .fin-total-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+
+    .fin-total-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--success);
+      letter-spacing: -1px;
+    }
+
+    .fin-note {
+      font-size: 11px;
+      color: var(--warm-gray);
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--section-bg);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      padding: 28px 20px 36px;
+      font-size: 11px;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 520px) {
+      .logo-name { font-size: 15px; }
+      .kpi-value { font-size: 28px; }
+      .prop-bar-col { max-width: 85px; }
+      .coll-num { font-size: 22px; }
+      .ai-headline { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ HEADER -->
+<header class="site-header">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Lone Star Property Group</span>
+      <span class="logo-sub">Owner Portal · Managed by Marcus Webb</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="sync-pill">
+      <div class="sync-dot"></div>
+      Synced with Buildium
+    </div>
+    <div class="header-date" id="header-date"></div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══════════════════════════════════════ KPI CARDS -->
+  <div class="section-label">
+    At a Glance
+    <span class="section-meta">140 Units · 8 Properties · San Antonio, TX</span>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Collected This Month</div>
+      <div class="kpi-value">$137K</div>
+      <div class="kpi-sub">of $152,650 from occupied units</div>
+      <span class="kpi-tag tag-green">90% collected</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Units Paid</div>
+      <div class="kpi-value">119</div>
+      <div class="kpi-sub">13 outstanding · 8 not leased</div>
+      <span class="kpi-tag tag-warn">1 tenant 14+ days late</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Occupancy Rate</div>
+      <div class="kpi-value">94%</div>
+      <div class="kpi-sub">132 of 140 units · 6% vacancy</div>
+      <span class="kpi-tag tag-warn">2 new vacancies this month</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Projected NOI — <span class="dyn-month"></span></div>
+      <div class="kpi-value">$127K</div>
+      <div class="kpi-sub">after operating expenses</div>
+      <span class="kpi-tag tag-green">On budget</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ AI NARRATIVE -->
+  <div class="section-label" style="margin-top:40px">Mid-Month Update</div>
+
+  <div class="card ai-card">
+    <div class="card-head">
+      <div class="ai-card-label">Lone Star AI Summary</div>
+      <div class="ai-card-date" id="ai-card-date"></div>
+    </div>
+    <div class="ai-body">
+      <h2 class="ai-headline">Your June portfolio update.</h2>
+      <div class="ai-text">
+        <p>Your 132 occupied units have generated <strong>$137,325 in rent so far this month</strong> — 90% of what's owed. That's on track for where you want to be at mid-month.</p>
+
+        <p>At <strong>Stone Oak</strong>, one tenant is 14 days past due and hasn't responded to payment reminders. This is the third time in six months. Lone Star has flagged it and a manual follow-up is underway.</p>
+
+        <p><strong>Schertz Village had two tenants turn over back to back.</strong> Units 3 and 8 are now vacant, dropping that property from 100% to 80% occupied. Expect roughly $3,600 in make-ready costs before the next tenants move in. Lone Star is working to get the listings activated.</p>
+
+        <p>Maintenance costs came in a bit higher than normal this month. The <strong>Helotes Hills water heater</strong> was an emergency replacement at $1,150 — there was no way around it. At Bandera Road Flats, a fence repair has pushed maintenance spend 34% above that property's monthly average. The scope is being reviewed before the invoice is approved.</p>
+
+        <p><strong>New Braunfels Crossings and Converse Park</strong> both had clean months — every tenant paid, nothing open. That's 29 units requiring no attention.</p>
+
+        <p>Your portfolio is on track to generate approximately <strong>$126,858 in net operating income</strong> for June.</p>
+      </div>
+      <div class="ai-foot">
+        <div class="ai-avatar">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        Lone Star AI · Generated from Buildium sync · June 14, 2026 · For informational purposes
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ ALERTS -->
+  <div class="section-label" style="margin-top:40px">Items to Be Aware Of</div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Anomaly Alerts
+      </div>
+      <div class="card-badge">4 items</div>
+    </div>
+    <div class="alert-list">
+
+      <div class="alert-item">
+        <div class="alert-icon danger">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9E2525" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="alert-body">
+          <div class="alert-title">Stone Oak #12 — Late Payment, Pattern of 3</div>
+          <div class="alert-desc">$1,250 outstanding at 14 days past due. Automated reminders were sent June 3 and June 10 with no response. This tenant has been late 3 of the last 6 months. Lone Star has been notified and a manual follow-up is in progress.</div>
+          <span class="alert-cta">→ Contact your property manager for an update</span>
+        </div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-icon warn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A84A10" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <div class="alert-body">
+          <div class="alert-title">Schertz Village — 2 Vacancies, ~$3,600 in Turn Costs Ahead</div>
+          <div class="alert-desc">Units 3 and 8 both turned over this month — 6/2 and 5/28. Occupancy dropped from 100% to 80%. At the $1,800 average turn cost, expect roughly $3,600 in make-ready expenses before new tenants move in. Lone Star is activating listings.</div>
+          <span class="alert-cta">→ Ask your property manager for a leasing timeline</span>
+        </div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-icon warn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A84A10" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="alert-body">
+          <div class="alert-title">Bandera Road Flats — Maintenance Costs Running 34% Above Average</div>
+          <div class="alert-desc">Month-to-date maintenance spend is $1,520 against a $1,135 monthly average. A perimeter fence repair with TF Fencing is the primary driver. Lone Star is reviewing the final scope and quote before approving the invoice.</div>
+          <span class="alert-cta">→ Ask your property manager for the vendor estimate</span>
+        </div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-icon warn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A84A10" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </div>
+        <div class="alert-body">
+          <div class="alert-title">Riverwalk Terrace #5 — Appliance Repair Delayed 8 Days</div>
+          <div class="alert-desc">Refrigerator replacement parts have been on backorder with Appliance Pro since June 6. The tenant has followed up twice. Lone Star is exploring a local purchase to resolve this quickly — a broken appliance in June heat is a habitability concern.</div>
+          <span class="alert-cta">→ Ask your property manager for the resolution timeline</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ RENT + VACANCY -->
+  <div class="section-label" style="margin-top:40px">Rent Collection &amp; Occupancy</div>
+
+  <div class="two-col">
+
+    <!-- RENT COLLECTION -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          Rent Collection
+        </div>
+        <div class="card-badge" id="rent-badge"></div>
+      </div>
+      <div class="card-body">
+
+        <div class="coll-summary">
+          <div>
+            <div class="coll-num" style="color:var(--success)">$137,325</div>
+            <div class="coll-lbl">Collected</div>
+          </div>
+          <div>
+            <div class="coll-num" style="color:var(--warn)">$15,325</div>
+            <div class="coll-lbl">Outstanding</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div class="prog-header">
+            <span>119 of 132 occupied units paid</span>
+            <strong>90%</strong>
+          </div>
+          <div class="prog-track" style="height:8px">
+            <div class="prog-fill" id="main-prog" style="width:0%;background:var(--accent)"></div>
+          </div>
+        </div>
+
+        <div id="rent-rows"></div>
+
+      </div>
+    </div>
+
+    <!-- VACANCY -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          Vacancy Status
+        </div>
+        <div class="card-badge">8 vacant · 6%</div>
+      </div>
+      <div class="card-body" style="padding-top:14px">
+        <div id="vacancy-rows"></div>
+        <div class="dot-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#3A7D5C"></div>Occupied</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#B03030"></div>Vacant</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#6B50B8"></div>Pre-leased</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════ MAINTENANCE + FINANCIALS -->
+  <div class="section-label" style="margin-top:40px">Maintenance &amp; Financials</div>
+
+  <div class="two-col">
+
+    <!-- WORK ORDERS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          Open Work Orders
+        </div>
+        <div class="card-badge">8 orders</div>
+      </div>
+      <div class="card-body" style="padding-top:6px;padding-bottom:8px">
+        <div id="wo-list"></div>
+        <div class="wo-total-row">
+          <div class="wo-total-label">Total Open Costs</div>
+          <div class="wo-total-val">$7,330</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCIALS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Projected <span class="dyn-month"></span> Income
+        </div>
+        <div class="card-badge">Net Operating</div>
+      </div>
+      <div class="card-body">
+
+        <div class="fin-row">
+          <div class="fin-label">Gross Rent — 132 occupied units</div>
+          <div class="fin-val pos">$152,650</div>
+        </div>
+
+        <hr class="fin-divider">
+        <div class="fin-group-label">Operating Expenses</div>
+
+        <div class="fin-row">
+          <div class="fin-label indent">Maintenance &amp; Repairs</div>
+          <div class="fin-val neg">−$7,330</div>
+        </div>
+        <div class="fin-row">
+          <div class="fin-label indent">Property Mgmt Fee (8%)</div>
+          <div class="fin-val neg">−$12,212</div>
+        </div>
+        <div class="fin-row">
+          <div class="fin-label indent">Insurance</div>
+          <div class="fin-val neg">−$3,200</div>
+        </div>
+        <div class="fin-row">
+          <div class="fin-label indent">Common Area Utilities</div>
+          <div class="fin-val neg">−$1,850</div>
+        </div>
+        <div class="fin-row">
+          <div class="fin-label indent">Landscaping &amp; Grounds</div>
+          <div class="fin-val neg">−$1,200</div>
+        </div>
+
+        <div class="fin-total-row">
+          <div class="fin-total-label">Projected NOI</div>
+          <div class="fin-total-val">$126,858</div>
+        </div>
+
+        <p class="fin-note">
+          Net Operating Income — does not include mortgage / debt service. $1,150 avg rent across portfolio. Outstanding $15,325 expected to close before month end; full collection typically reaches 95–97%.
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div>Lone Star Property Group &nbsp;·&nbsp; 140 Units &nbsp;·&nbsp; 8 Properties &nbsp;·&nbsp; San Antonio, TX</div>
+  <div style="margin-top:4px">Managed by Marcus Webb &nbsp;·&nbsp; Data via Buildium &nbsp;·&nbsp; <span id="footer-date"></span> &nbsp;·&nbsp; Built by ROI Roadmap &nbsp;·&nbsp; roiroadmap.ai</div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// DATA — matches ROIRoadmap_Context file exactly:
+// 140 units · 8 properties · 6 owner clients · $1,150 avg rent · 6% vacancy (~8 units)
+// ═══════════════════════════════════════════════════════════════
+
+const properties = [
+  {
+    name: 'Alamo Heights Apartments',
+    address: '2847 Broadway St',
+    totalUnits: 24,
+    vacantUnits: [7, 19],
+    preleasedUnits: [],
+    paidCount: 19,
+    occupiedCount: 22,
+    avgRent: 1100,
+    vacantNotes: { 7: 'Vacant since 5/15 · listed', 19: 'New vacancy · 6/1' },
+    preleasedNotes: {}
+  },
+  {
+    name: 'Stone Oak Commons',
+    address: '18420 Huebner Rd',
+    totalUnits: 20,
+    vacantUnits: [],
+    preleasedUnits: [],
+    paidCount: 17,
+    occupiedCount: 20,
+    avgRent: 1250,
+    vacantNotes: {},
+    preleasedNotes: {},
+    note: 'Unit 12 — 14 days late'
+  },
+  {
+    name: 'Riverwalk Terrace',
+    address: '411 S Flores St',
+    totalUnits: 18,
+    vacantUnits: [12],
+    preleasedUnits: [],
+    paidCount: 15,
+    occupiedCount: 17,
+    avgRent: 1400,
+    vacantNotes: { 12: 'Vacant since 6/3 · listed' },
+    preleasedNotes: {}
+  },
+  {
+    name: 'Bandera Road Flats',
+    address: '9038 Bandera Rd',
+    totalUnits: 16,
+    vacantUnits: [4],
+    preleasedUnits: [],
+    paidCount: 13,
+    occupiedCount: 15,
+    avgRent: 1050,
+    vacantNotes: { 4: 'Recently vacated · listing pending' },
+    preleasedNotes: {}
+  },
+  {
+    name: 'Helotes Hills',
+    address: '12209 Leslie Rd, Helotes',
+    totalUnits: 22,
+    vacantUnits: [],
+    preleasedUnits: [17],
+    paidCount: 19,
+    occupiedCount: 21,
+    avgRent: 1150,
+    vacantNotes: {},
+    preleasedNotes: { 17: 'Pre-leased · new tenant signs 7/1' }
+  },
+  {
+    name: 'New Braunfels Crossings',
+    address: '1847 Loop 337, New Braunfels',
+    totalUnits: 14,
+    vacantUnits: [],
+    preleasedUnits: [],
+    paidCount: 14,
+    occupiedCount: 14,
+    avgRent: 1100,
+    vacantNotes: {},
+    preleasedNotes: {}
+  },
+  {
+    name: 'Converse Park',
+    address: '7720 FM 78, Converse',
+    totalUnits: 16,
+    vacantUnits: [13],
+    preleasedUnits: [],
+    paidCount: 15,
+    occupiedCount: 15,
+    avgRent: 1050,
+    vacantNotes: { 13: 'New vacancy · 6/8' },
+    preleasedNotes: {}
+  },
+  {
+    name: 'Schertz Village',
+    address: '3301 Schertz Pkwy, Schertz',
+    totalUnits: 10,
+    vacantUnits: [3, 8],
+    preleasedUnits: [],
+    paidCount: 7,
+    occupiedCount: 8,
+    avgRent: 1075,
+    vacantNotes: { 3: 'New vacancy · 6/2 · ~$1,800 turn', 8: 'New vacancy · 5/28 · ~$1,800 turn' },
+    preleasedNotes: {}
+  }
+];
+
+// Verify: total units = 24+20+18+16+22+14+16+10 = 140 ✓
+// Occupied: 22+20+17+15+21+14+15+8 = 132 ✓
+// Vacant: 2+0+1+1+1+0+1+2 = 8 (5.7% ≈ 6%) ✓
+// Avg rent: (24×1100+20×1250+18×1400+16×1050+22×1150+14×1100+16×1050+10×1075)/140 ≈ $1,154 ✓
+
+const workOrders = [
+  { title: 'HVAC Not Cooling',             location: 'Stone Oak Commons #14',      vendor: 'Comfort Air HVAC',    status: 'progress',  statusLabel: 'In Progress', cost: 450,  costLbl: 'est.' },
+  { title: 'Plumbing Leak — Under Sink',   location: 'Alamo Heights #8',           vendor: 'Rapid Plumbing',      status: 'completed', statusLabel: 'Completed',   cost: 320,  costLbl: 'invoice pending' },
+  { title: 'Roof Inspection (All Units)',  location: 'Schertz Village',            vendor: 'TBD',                 status: 'scheduled', statusLabel: 'Scheduled',   cost: 850,  costLbl: 'est.' },
+  { title: 'Refrigerator Replacement',    location: 'Riverwalk Terrace #5',       vendor: 'Appliance Pro',       status: 'open',      statusLabel: 'Parts Ordered', cost: 680, costLbl: 'est.' },
+  { title: 'Perimeter Fence Repair',      location: 'Bandera Road Flats',         vendor: 'TF Fencing',          status: 'progress',  statusLabel: 'In Progress', cost: 1200, costLbl: 'est.' },
+  { title: 'Common Area — Interior Paint', location: 'Converse Park',              vendor: 'Precision Paint Co.', status: 'scheduled', statusLabel: 'Scheduled',   cost: 2400, costLbl: 'est.' },
+  { title: 'Water Heater Replacement',    location: 'Helotes Hills #17',          vendor: 'AquaTemp Services',   status: 'completed', statusLabel: 'Completed',   cost: 1150, costLbl: 'final' },
+  { title: 'Window Seal Failure',         location: 'New Braunfels Crossings #9', vendor: 'Glass & Seal TX',     status: 'open',      statusLabel: 'Open',        cost: 280,  costLbl: 'est.' }
+];
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════════════════
+
+function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+function renderRentRows() {
+  const el = document.getElementById('rent-rows');
+  let html = '';
+  properties.forEach(p => {
+    const expected  = p.occupiedCount * p.avgRent;
+    const collected = p.paidCount * p.avgRent;
+    const pct       = p.occupiedCount > 0 ? Math.round((p.paidCount / p.occupiedCount) * 100) : 0;
+    const isFull    = pct === 100;
+    const fillColor = isFull ? 'var(--success)' : 'var(--accent)';
+    const collColor = isFull ? 'color:var(--success)' : '';
+    html += `
+      <div class="prop-row">
+        <div class="prop-info">
+          <div class="prop-name">${p.name}</div>
+          <div class="prop-addr">${p.address}</div>
+        </div>
+        <div class="prop-bar-col">
+          <div class="prop-bar-header">
+            <span>${p.paidCount}/${p.occupiedCount}</span>
+            <span>${pct}%</span>
+          </div>
+          <div class="prog-track" style="height:5px">
+            <div class="prog-fill" style="height:5px;width:${pct}%;background:${fillColor}"></div>
+          </div>
+        </div>
+        <div class="prop-amounts">
+          <div class="prop-collected" style="${collColor}">${fmt(collected)}</div>
+          <div class="prop-total">of ${fmt(expected)}</div>
+        </div>
+      </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderVacancy() {
+  const el = document.getElementById('vacancy-rows');
+  let html  = '';
+  properties.forEach(p => {
+    const vCount = p.vacantUnits.length;
+    const pCount = p.preleasedUnits.length;
+    const parts  = [];
+    if (vCount)  parts.push(`${vCount} vacant`);
+    if (pCount)  parts.push(`${pCount} pre-leased`);
+    if (!vCount && !pCount) parts.push('fully occupied');
+
+    let dots = '';
+    for (let i = 1; i <= p.totalUnits; i++) {
+      let cls   = 'occupied';
+      let title = `Unit ${i} — Occupied`;
+      if (p.vacantUnits.includes(i)) {
+        cls   = 'vacant';
+        title = `Unit ${i} — ${p.vacantNotes[i] || 'Vacant'}`;
+      } else if (p.preleasedUnits.includes(i)) {
+        cls   = 'preleased';
+        title = `Unit ${i} — ${p.preleasedNotes[i] || 'Pre-leased'}`;
+      }
+      dots += `<div class="u-dot ${cls}" title="${title}"></div>`;
+    }
+
+    const detailLines = [
+      ...p.vacantUnits.map(u    => `Unit ${u}: ${p.vacantNotes[u]    || 'Vacant'}`),
+      ...p.preleasedUnits.map(u => `Unit ${u}: ${p.preleasedNotes[u] || 'Pre-leased'}`)
+    ];
+
+    html += `
+      <div class="vac-row">
+        <div class="vac-header">
+          <div class="vac-prop-name">${p.name}</div>
+          <div class="vac-stat">${p.occupiedCount}/${p.totalUnits} occupied · ${parts.join(' · ')}</div>
+        </div>
+        <div class="unit-dots">${dots}</div>
+        ${detailLines.length ? `<div class="vac-detail">${detailLines.join(' &nbsp;·&nbsp; ')}</div>` : ''}
+      </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderWorkOrders() {
+  const el = document.getElementById('wo-list');
+  let html  = '';
+  workOrders.forEach(wo => {
+    html += `
+      <div class="wo-item">
+        <div class="wo-badge ${wo.status}">${wo.statusLabel}</div>
+        <div class="wo-info">
+          <div class="wo-title">${wo.title}</div>
+          <div class="wo-meta">${wo.location} · ${wo.vendor}</div>
+        </div>
+        <div class="wo-cost-col">
+          <div class="wo-cost">${fmt(wo.cost)}</div>
+          <div class="wo-cost-lbl">${wo.costLbl}</div>
+        </div>
+      </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function animateBars() {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const bar = document.getElementById('main-prog');
+    if (bar) bar.style.width = '90%';
+  }));
+}
+
+renderRentRows();
+renderVacancy();
+renderWorkOrders();
+animateBars();
+
+(function setDates() {
+  const now     = new Date();
+  const full    = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const short   = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  const month   = now.toLocaleDateString('en-US', { month: 'long' });
+  const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  document.getElementById('header-date').textContent  = full.toUpperCase();
+  document.getElementById('ai-card-date').textContent = `${full} · ${timeStr}`;
+  document.getElementById('rent-badge').textContent   = short;
+  document.getElementById('footer-date').textContent  = full;
+  document.querySelectorAll('.dyn-month').forEach(el => el.textContent = month);
+})();
+</script>
+</body>
+</html>
