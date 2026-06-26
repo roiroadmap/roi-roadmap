@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-231RBKPQTB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-231RBKPQTB');
+</script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://claude-proxy.roiroadmap.workers.dev https://www.google-analytics.com https://region1.google-analytics.com;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lone Star Property Group — Lead Response Engine</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #F5F0E8;
+  --dark:       #1A1A18;
+  --warm-gray:  #6B6560;
+  --accent:     #C8622A;
+  --accent-dim: #A84A10;
+  --accent-bg:  #F7EDE5;
+  --section-bg: #EEEAE0;
+  --border:     #D8D0C0;
+  --card:       #FFFFFF;
+  --success:    #2D5A3D;
+  --success-bg: #EBF2EE;
+  --danger:     #9E2525;
+  --danger-bg:  #FAE8E8;
+  --warn:       #A84A10;
+  --warn-bg:    #FDF0E6;
+  --blue:       #2552A2;
+  --blue-bg:    #EBF0FB;
+  --purple:     #5B3D9E;
+  --purple-bg:  #F2EDFC;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 400;
+  background: var(--cream);
+  color: var(--dark);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ───────────────────────────────────── */
+.site-header {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 13px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.header-brand { display: flex; align-items: center; gap: 11px; }
+.logo-mark {
+  width: 34px; height: 34px;
+  background: var(--accent); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.brand-name { font-size: 14px; font-weight: 600; color: var(--cream); line-height: 1.2; }
+.brand-sub  { font-size: 11px; color: rgba(245,240,232,0.5); }
+.header-tag { font-size: 11px; font-weight: 500; color: rgba(245,240,232,0.45); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ── STAGE 1: FORM ────────────────────────────── */
+#stage-1 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  overflow-y: auto;
+}
+
+.form-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 36px 36px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.06);
+}
+
+.source-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 13px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--warm-gray);
+  margin-bottom: 22px;
+}
+.source-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #27AE60;
+  animation: source-blink 2s ease-in-out infinite;
+}
+@keyframes source-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+.form-desc {
+  font-size: 13.5px;
+  color: var(--warm-gray);
+  line-height: 1.55;
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+.form-row { display: flex; gap: 14px; }
+.form-row .form-grp { flex: 1; }
+
+.form-grp { margin-bottom: 16px; }
+.form-lbl {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+.form-ctrl {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--dark);
+  background: var(--cream);
+  transition: border-color 0.14s;
+  appearance: none;
+}
+.form-ctrl:focus { outline: none; border-color: var(--accent); }
+select.form-ctrl {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.14s;
+  letter-spacing: 0.01em;
+}
+.btn-submit:hover { background: var(--accent-dim); }
+
+/* ── STAGE 2: SPLIT SCREEN ────────────────────── */
+#stage-2 {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lead-bar {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  gap: 12px;
+}
+.lead-bar-left { display: flex; align-items: center; gap: 14px; }
+.lead-bar-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+.lead-bar-unit { font-size: 11.5px; color: rgba(245,240,232,0.5); }
+.lead-bar-sep  { font-size: 11px; color: rgba(245,240,232,0.2); }
+.lead-bar-right { font-size: 11px; color: rgba(245,240,232,0.4); white-space: nowrap; }
+.elapsed-val    { color: rgba(245,240,232,0.7); font-weight: 500; }
+
+.split-panels {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── PANELS ───────────────────────────────────── */
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-left  { border-right: 1px solid var(--border); background: var(--cream); }
+.panel-right { background: var(--section-bg); }
+
+.panel-hd {
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-left  .panel-hd { background: var(--cream); }
+.panel-right .panel-hd { background: var(--section-bg); }
+
+.panel-title { font-size: 13.5px; font-weight: 600; color: var(--dark); letter-spacing: -0.01em; }
+.panel-sub   { font-size: 11px; color: var(--warm-gray); margin-top: 1px; }
+
+.live-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: source-blink 1.8s ease-in-out infinite;
+}
+
+/* ── CHAT (Tenant View) ───────────────────────── */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.msg-row { display: flex; }
+.msg-incoming { justify-content: flex-start; }
+.msg-outgoing { justify-content: flex-end; }
+
+.msg-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.msg-incoming .msg-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--dark);
+  border-bottom-left-radius: 4px;
+}
+.msg-outgoing .msg-bubble {
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+/* Sender label above incoming bubbles */
+.msg-sender {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  padding-left: 2px;
+}
+
+/* Typing indicator */
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 16px;
+}
+.typing-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  animation: typing-pulse 1.3s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.75); }
+  40%           { opacity: 1;   transform: scale(1);    }
+}
+
+.chat-input-wrap {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: none;
+  gap: 9px;
+  background: var(--card);
+  flex-shrink: 0;
+  align-items: center;
+}
+.chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--dark);
+  background: var(--cream);
+  transition: border-color 0.14s;
+}
+.chat-input:focus { outline: none; border-color: var(--accent); }
+.chat-input::placeholder { color: var(--border); }
+.chat-send {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.14s;
+  flex-shrink: 0;
+}
+.chat-send:hover { background: var(--accent-dim); }
+
+/* ── PM VIEW ──────────────────────────────────── */
+#pm-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pm-section-hd {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warm-gray);
+  margin-bottom: 10px;
+}
+
+/* Activity feed */
+#activity-feed { display: flex; flex-direction: column; gap: 0; }
+
+.act-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 11px;
+}
+.act-time {
+  font-size: 10px;
+  color: var(--warm-gray);
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+  padding-top: 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.act-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.act-body {
+  flex: 1;
+  font-size: 12.5px;
+  color: var(--dark);
+  line-height: 1.45;
+  padding-top: 1px;
+}
+.act-body em { font-style: normal; color: var(--warm-gray); }
+.act-body strong { font-weight: 600; }
+
+/* Icon colors by type */
+.type-lead     .act-icon { background: var(--blue-bg);    color: var(--blue);    }
+.type-fire     .act-icon { background: var(--accent-bg);  color: var(--accent);  }
+.type-question .act-icon { background: var(--purple-bg);  color: var(--purple);  }
+.type-answer   .act-icon { background: var(--success-bg); color: var(--success); }
+.type-complete .act-icon { background: var(--section-bg); color: var(--warm-gray); border: 1px solid var(--border); }
+.type-qualified .act-icon{ background: var(--success-bg); color: var(--success); }
+.type-dnq      .act-icon { background: var(--danger-bg);  color: var(--danger);  }
+.type-followup .act-icon { background: var(--warn-bg);    color: var(--warn);    }
+
+/* Lead Profile */
+.lead-profile-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.profile-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--section-bg);
+  gap: 12px;
+}
+.profile-row:last-child { border-bottom: none; }
+.profile-key {
+  font-size: 11.5px;
+  color: var(--warm-gray);
+  width: 110px;
+  flex-shrink: 0;
+  font-weight: 500;
+  padding-top: 1px;
+}
+.profile-val {
+  font-size: 13px;
+  color: var(--dark);
+  flex: 1;
+  line-height: 1.4;
+}
+.signal {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 1px 7px;
+  border-radius: 20px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.signal-ok      { background: var(--success-bg); color: var(--success); }
+.signal-no      { background: var(--danger-bg);  color: var(--danger);  }
+.signal-neutral { background: var(--section-bg); color: var(--warm-gray); border: 1px solid var(--border); }
+
+/* Verdict */
+.verdict-card {
+  border-radius: 10px;
+  padding: 15px 16px;
+  border: 1.5px solid;
+}
+.verdict-qualified { background: var(--success-bg); border-color: rgba(45,90,61,0.3); }
+.verdict-followup  { background: var(--warn-bg);    border-color: rgba(168,74,16,0.25); }
+.verdict-dnq       { background: var(--danger-bg);  border-color: rgba(158,37,37,0.25); }
+
+.verdict-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.verdict-status {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.verdict-qualified .verdict-status { color: var(--success); }
+.verdict-followup  .verdict-status { color: var(--warn); }
+.verdict-dnq       .verdict-status { color: var(--danger); }
+
+.verdict-action-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: #fff;
+}
+.verdict-qualified .verdict-action-pill { background: var(--success); }
+.verdict-followup  .verdict-action-pill { background: var(--warn); }
+.verdict-dnq       .verdict-action-pill { background: var(--danger); }
+
+.verdict-signals { display: flex; flex-direction: column; gap: 5px; }
+.vsig {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.4;
+}
+.vsig-ok      { color: var(--success); }
+.vsig-no      { color: var(--danger); }
+.vsig-neutral { color: var(--warm-gray); }
+.vsig-icon    { font-size: 10px; font-weight: 700; flex-shrink: 0; }
+.vsig-note    { font-size: 11px; color: var(--warm-gray); }
+
+/* Reset button */
+.reset-wrap {
+  padding: 10px 16px 14px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--cream);
+}
+.reset-btn {
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--warm-gray);
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 7px 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.14s, color 0.14s;
+}
+.reset-btn:hover { border-color: var(--dark); color: var(--dark); }
+
+/* ── SCROLLBARS ───────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--warm-gray); }
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 820px) {
+  body { height: auto; overflow: auto; }
+  #stage-1 { flex: none; min-height: calc(100vh - 60px); }
+  #stage-2 { flex: none; height: auto; }
+  .split-panels { flex-direction: column; overflow: visible; }
+  .panel { flex: none; min-height: 420px; }
+  .panel-left { border-right: none; border-bottom: 1px solid var(--border); }
+  #pm-scroll { max-height: 500px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-brand">
+    <div class="logo-mark">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">Lone Star Property Group</div>
+      <div class="brand-sub">Lead Response Engine</div>
+    </div>
+  </div>
+  <div class="header-tag">AI-Powered Demo</div>
+</header>
+
+<!-- ── STAGE 1: INQUIRY FORM ───────────────────── -->
+<div id="stage-1">
+  <div class="form-card">
+    <div class="source-pill">
+      <span class="source-dot"></span>
+      New rental inquiry via Zillow
+    </div>
+    <div class="form-title">Rental Inquiry</div>
+    <p class="form-desc">Submit the form below to see how Lone Star's AI lead response system handles a new inquiry in real time — from first contact through pre-qualification.</p>
+    <form id="lead-form" onsubmit="submitInquiry(event)">
+      <div class="form-row">
+        <div class="form-grp">
+          <label class="form-lbl" for="first-name">First Name</label>
+          <input class="form-ctrl" type="text" id="first-name" placeholder="Sarah" required>
+        </div>
+        <div class="form-grp">
+          <label class="form-lbl" for="last-name">Last Name</label>
+          <input class="form-ctrl" type="text" id="last-name" placeholder="Martinez" required>
+        </div>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl" for="phone">Phone Number</label>
+        <input class="form-ctrl" type="tel" id="phone" placeholder="(512) 555-0100" required>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl" for="email">Email Address</label>
+        <input class="form-ctrl" type="email" id="email" placeholder="sarah@email.com" required>
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl" for="unit-select">Unit of Interest</label>
+        <select class="form-ctrl" id="unit-select" required>
+          <option value="">Select a unit…</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-submit">Submit Inquiry →</button>
+      <div id="form-error" style="display:none;font-size:12.5px;color:#9E2525;margin-top:10px;"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ── STAGE 2: SPLIT SCREEN ───────────────────── -->
+<div id="stage-2">
+  <!-- Lead bar -->
+  <div class="lead-bar">
+    <div class="lead-bar-left">
+      <div class="lead-bar-name" id="bar-name">—</div>
+      <span class="lead-bar-sep">·</span>
+      <div class="lead-bar-unit" id="bar-unit">—</div>
+    </div>
+    <div class="lead-bar-right">
+      Elapsed: <span class="elapsed-val" id="elapsed-display">0s</span>
+    </div>
+  </div>
+
+  <!-- Panels -->
+  <div class="split-panels">
+
+    <!-- LEFT: Tenant View -->
+    <div class="panel panel-left">
+      <div class="panel-hd">
+        <div>
+          <div class="panel-title">Tenant View</div>
+          <div class="panel-sub">What the prospect sees</div>
+        </div>
+        <span style="font-size:11px;color:var(--warm-gray);font-style:italic;">Simulated</span>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-wrap" id="chat-input-wrap">
+        <input class="chat-input" type="text" id="chat-input" placeholder="Type your answer…">
+        <button class="chat-send" onclick="sendAnswer()">Send</button>
+      </div>
+      <div class="reset-wrap" id="reset-wrap" style="display:none">
+        <button class="reset-btn" onclick="resetDemo()">↺ Run Demo Again</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: PM View -->
+    <div class="panel panel-right">
+      <div class="panel-hd">
+        <div>
+          <div class="panel-title">PM View</div>
+          <div class="panel-sub">Marcus Webb · Lone Star Property Group</div>
+        </div>
+        <div class="live-badge">
+          <span class="live-dot"></span> Live
+        </div>
+      </div>
+      <div id="pm-scroll">
+
+        <!-- Activity feed -->
+        <div>
+          <div class="pm-section-hd">Live Activity</div>
+          <div id="activity-feed"></div>
+        </div>
+
+        <!-- Lead profile (appears after first answer) -->
+        <div id="profile-section" style="display:none">
+          <div class="pm-section-hd">Lead Profile</div>
+          <div class="lead-profile-card" id="lead-profile"></div>
+        </div>
+
+        <!-- Verdict (appears after all questions) -->
+        <div id="verdict-section" style="display:none">
+          <div class="pm-section-hd">Qualification Result</div>
+          <div id="verdict-container"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ── UTILS ────────────────────────────────────── */
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* ── CONSTANTS ────────────────────────────────── */
+
+const PROXY_URL   = 'https://claude-proxy.roiroadmap.workers.dev';
+const SYSTEM_PROMPT = 'You are an AI leasing assistant for Lone Star Property Group, a property management company in San Antonio Texas. You are warm, professional, and concise. Never provide legal advice. Keep messages brief and friendly.';
+
+const UNITS = [
+  { id:'u1', property:'Alamo Heights Apartments',  unit:'7',  rent:1100 },
+  { id:'u2', property:'Alamo Heights Apartments',  unit:'19', rent:1100 },
+  { id:'u3', property:'Riverwalk Terrace',          unit:'12', rent:1400 },
+  { id:'u4', property:'Bandera Road Flats',         unit:'4',  rent:1050 },
+  { id:'u5', property:'Converse Park',              unit:'13', rent:1050 },
+  { id:'u6', property:'Schertz Village',            unit:'3',  rent:1075 },
+];
+
+const QUESTIONS = [
+  { id:'moveIn',    text:"What is your desired move-in date?",             label:"Move-in Date",    hint:"e.g. July 1, 2026 or ASAP" },
+  { id:'occupants', text:"How many occupants will be on the lease?",        label:"Occupants",       hint:"e.g. 2" },
+  { id:'pets',      text:"Do you have any pets?",                           label:"Pets",            hint:"e.g. No pets / Yes, 1 dog" },
+  { id:'income',    text:"What is your gross monthly income?",              label:"Monthly Income",  hint:"e.g. $4,500/month" },
+  { id:'evictions', text:"Have you had any evictions in the past 5 years?", label:"Prior Evictions", hint:"Yes or No" },
+];
+
+/* ── STATE ────────────────────────────────────── */
+
+let lead             = null;
+let unit             = null;
+let answers          = {};
+let currentQ         = -1;
+let startTime        = null;
+let timerRef         = null;
+let inputActive      = false;
+let numOccupants     = 1;
+let incomeMode       = false;
+let incomeSubIdx     = 0;
+let collectedIncomes = [];
+let petsMode         = false;
+let petsSubIdx       = 0;
+let petsDetails      = {};
+
+/* ── INIT ─────────────────────────────────────── */
+
+(function init() {
+  const sel = document.getElementById('unit-select');
+  UNITS.forEach(u => {
+    const opt = document.createElement('option');
+    opt.value = u.id;
+    opt.textContent = `${u.property} — Unit ${u.unit}  ($${u.rent.toLocaleString()}/mo)`;
+    sel.appendChild(opt);
+  });
+
+  document.getElementById('chat-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendAnswer();
+  });
+})();
+
+/* ── FORM SUBMIT ──────────────────────────────── */
+
+function validateInquiry(firstName, lastName, phone, email, unitId) {
+  if (!firstName || firstName.length > 100)
+    return 'Please enter a valid first name (max 100 characters).';
+  if (!lastName || lastName.length > 100)
+    return 'Please enter a valid last name (max 100 characters).';
+  if (!phone || !/^[\d\s()\-+.]{7,20}$/.test(phone))
+    return 'Please enter a valid phone number.';
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return 'Please enter a valid email address.';
+  if (!unitId || !UNITS.find(u => u.id === unitId))
+    return 'Please select a unit of interest.';
+  return null;
+}
+
+async function submitInquiry(e) {
+  e.preventDefault();
+
+  const firstName = document.getElementById('first-name').value.trim();
+  const lastName  = document.getElementById('last-name').value.trim();
+  const phone     = document.getElementById('phone').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const unitId    = document.getElementById('unit-select').value;
+
+  const errEl  = document.getElementById('form-error');
+  const errMsg = validateInquiry(firstName, lastName, phone, email, unitId);
+  if (errMsg) {
+    console.error('Form validation failed:', errMsg);
+    errEl.textContent = errMsg;
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  unit = UNITS.find(u => u.id === unitId);
+  lead = { firstName, lastName, phone, email };
+  startTime = Date.now();
+
+  // Switch screens
+  document.getElementById('stage-1').style.display = 'none';
+  document.getElementById('stage-2').style.display = 'flex';
+
+  // Update lead bar
+  document.getElementById('bar-name').textContent = `${firstName} ${lastName}`;
+  document.getElementById('bar-unit').textContent = `${unit.property} · Unit ${unit.unit} · $${unit.rent.toLocaleString()}/mo`;
+
+  // Start timer
+  timerRef = setInterval(() => {
+    document.getElementById('elapsed-display').textContent = getElapsed();
+  }, 1000);
+
+  await startFlow();
+}
+
+/* ── CONVERSATION FLOW ────────────────────────── */
+
+async function startFlow() {
+  addActivity('lead', `Lead received from Zillow — <strong>${esc(lead.firstName)} ${esc(lead.lastName)}</strong>`);
+
+  document.getElementById('profile-section').style.display = 'block';
+  addProfileDetail('Phone', lead.phone);
+  addProfileDetail('Email', lead.email);
+
+  await pause(900);
+
+  const typId = showTyping();
+
+  const autoMsg = await callAPI(
+    `Write a warm, brief welcome message to ${lead.firstName} who just submitted a rental inquiry about Unit ${unit.unit} at ${unit.property} in San Antonio, TX. Monthly rent is $${unit.rent.toLocaleString()}. Thank them for reaching out, confirm you received their inquiry, and let them know you'll ask a few quick pre-qualification questions to get started. 2–3 sentences max.`
+  );
+
+  removeTyping(typId);
+
+  const elapsed = Math.round((Date.now() - startTime) / 1000);
+  addIncoming(autoMsg, true);
+  addActivity('fire', `Auto-response fired — <strong>${elapsed}s after inquiry received</strong>`);
+
+  await pause(900);
+  currentQ = 0;
+  showQuestion(0);
+}
+
+function showQuestion(idx) {
+  if (idx >= QUESTIONS.length) return;
+  const q = QUESTIONS[idx];
+  addIncoming(q.text, false);
+  addActivity('question', `Q${idx + 1} sent — <em>${q.label}</em>`);
+  enableInput(q.hint);
+}
+
+async function sendAnswer() {
+  const input = document.getElementById('chat-input');
+  const text  = input.value.trim();
+  if (!text || !inputActive) return;
+  if (text.length > 500) {
+    console.error('Input validation failed: answer exceeds 500 character limit');
+    return;
+  }
+  input.value = '';
+  disableInput();
+
+  /* ── PETS SUB-FLOW ── */
+  if (petsMode) {
+    addOutgoing(text);
+    if (petsSubIdx === 0) {
+      petsDetails.species = text;
+      addActivity('answer', `Pets — count/species: <strong>"${esc(text)}"</strong>`);
+      addProfileDetail('Pet Species / Count', text);
+      petsSubIdx = 1;
+      await pause(550);
+      addIncoming('How much do they weigh approximately?', false);
+      addActivity('question', 'Q3b sent — <em>Pet Weight</em>');
+      enableInput('e.g. 25 lbs, ~10 lbs each');
+    } else {
+      petsDetails.weight = text;
+      addActivity('answer', `Pets — weight: <strong>"${esc(text)}"</strong>`);
+      addProfileDetail('Pet Weight', text);
+      petsMode = false;
+      await pause(550);
+      if (currentQ === 3 && numOccupants > 1) {
+        incomeMode = true; incomeSubIdx = 0; collectedIncomes = [];
+        askNextIncome(0);
+      } else {
+        showQuestion(currentQ);
+      }
+    }
+    return;
+  }
+
+  /* ── INCOME SUB-FLOW (multiple occupants) ── */
+  if (incomeMode) {
+    collectedIncomes.push(text);
+    addOutgoing(text);
+    addActivity('answer', `Tenant ${incomeSubIdx + 1} income — <strong>"${esc(text)}"</strong>`);
+    addProfileIncomeRow(incomeSubIdx + 1, text);
+    incomeSubIdx++;
+    await pause(550);
+    if (incomeSubIdx < numOccupants) {
+      askNextIncome(incomeSubIdx);
+    } else {
+      incomeMode = false;
+      answers.allIncomes  = collectedIncomes;
+      answers.totalIncome = collectedIncomes.reduce((s, v) => s + (parseIncome(v) || 0), 0);
+      addProfileCombinedRow(answers.totalIncome);
+      currentQ = 4;
+      showQuestion(4);
+    }
+    return;
+  }
+
+  /* ── NORMAL FLOW ── */
+  const q = QUESTIONS[currentQ];
+  answers[q.id] = text;
+  addOutgoing(text);
+  addActivity('answer', `Answer received — <em>${q.label}:</em> <strong>"${esc(text)}"</strong>`);
+  addProfileRow(q.id, text);
+
+  // Parse occupants after Q1
+  if (currentQ === 1) numOccupants = Math.max(1, parseInt(text) || 1);
+
+  // For single occupant, capture totalIncome when Q3 is answered
+  if (currentQ === 3 && numOccupants === 1) {
+    answers.totalIncome = parseIncome(text) || 0;
+  }
+
+  await pause(550);
+  currentQ++;
+
+  if (currentQ === 3 && hasPets(answers.pets)) {
+    petsMode = true;
+    petsSubIdx = 0;
+    addIncoming('How many pets do you have and what species are they?', false);
+    addActivity('question', 'Q3a sent — <em>Pet Species / Count</em>');
+    enableInput('e.g. 2 dogs, 1 cat');
+  } else if (currentQ === 3 && numOccupants > 1) {
+    incomeMode = true; incomeSubIdx = 0; collectedIncomes = [];
+    askNextIncome(0);
+  } else if (currentQ < QUESTIONS.length) {
+    showQuestion(currentQ);
+  } else {
+    await finishFlow();
+  }
+}
+
+function askNextIncome(idx) {
+  const isFirst = idx === 0;
+  const whose   = numOccupants === 2
+    ? (isFirst ? 'your' : "the other tenant's")
+    : `Tenant ${idx + 1}'s`;
+  const text = isFirst
+    ? 'What is your gross monthly income?'
+    : `And what is ${whose} gross monthly income?`;
+  addIncoming(text, false);
+  addActivity('question', `Income Q${idx + 1} of ${numOccupants} sent — <em>Tenant ${idx + 1}</em>`);
+  enableInput('e.g. $3,500/month');
+}
+
+function hasPets(str) {
+  if (!str) return false;
+  const s = str.trim().toLowerCase();
+  return !/^no\b|no pets?|don't have|dont have|\bnone\b|\bnope\b|^0\b|^zero\b/i.test(s);
+}
+
+function addProfileDetail(key, val) {
+  const profile = document.getElementById('lead-profile');
+  const div = document.createElement('div');
+  div.className = 'profile-row';
+  div.innerHTML = `<div class="profile-key">${esc(key)}</div><div class="profile-val">${esc(val)}</div>`;
+  profile.appendChild(div);
+  scrollPM();
+}
+
+function addProfileIncomeRow(tenantNum, text) {
+  const profile = document.getElementById('lead-profile');
+  const section = document.getElementById('profile-section');
+  if (section.style.display === 'none') section.style.display = 'block';
+  const div = document.createElement('div');
+  div.className = 'profile-row';
+  div.innerHTML = `<div class="profile-key">Tenant ${tenantNum} Income</div><div class="profile-val">${esc(text)}</div>`;
+  profile.appendChild(div);
+  scrollPM();
+}
+
+function addProfileCombinedRow(total) {
+  const profile = document.getElementById('lead-profile');
+  const div = document.createElement('div');
+  div.className = 'profile-row';
+  div.innerHTML = `
+    <div class="profile-key" style="font-weight:600;color:var(--dark);">Combined Income</div>
+    <div class="profile-val" style="font-weight:600;color:var(--dark);">$${Math.round(total).toLocaleString()}/mo</div>`;
+  profile.appendChild(div);
+  scrollPM();
+}
+
+async function finishFlow() {
+  const typId = showTyping();
+
+  const closeMsg = await callAPI(
+    `Write a warm closing message to ${lead.firstName} who just finished a quick pre-qualification questionnaire for Unit ${unit.unit} at ${unit.property} in San Antonio, TX ($${unit.rent.toLocaleString()}/mo). Let them know their responses have been received and the Lone Star team will be in touch within 24 hours with next steps. Be encouraging and professional. 2–3 sentences.`
+  );
+
+  removeTyping(typId);
+  addIncoming(closeMsg, true);
+
+  addActivity('complete', 'Pre-qualification complete — lead profile finalized');
+
+  await pause(400);
+
+  const result = qualify();
+  showVerdict(result);
+
+  const actType = result.verdict === 'qualified' ? 'qualified' : result.verdict === 'followup' ? 'followup' : 'dnq';
+  addActivity(actType, `Verdict: <strong>${result.label}</strong> · Next action: <strong>${result.action}</strong>`);
+
+  document.getElementById('reset-wrap').style.display = 'block';
+}
+
+/* ── QUALIFICATION ────────────────────────────── */
+
+function qualify() {
+  let positives = 0;
+  const signals = [];
+  const rent    = unit.rent;
+  const BUFFER  = 500; // income within $500 of 3× threshold still qualifies
+
+  // 1. Move-in date
+  const days   = parseDays(answers.moveIn);
+  if (days === null) {
+    // Could not parse — show as entered, treat as neutral rather than a negative signal
+    signals.push({ ok:null, text:`Move-in date: "${answers.moveIn}"`, note:'entered as free text — verify with applicant' });
+  } else if (days >= 0 && days <= 60) {
+    positives++;
+    signals.push({ ok:true, text:'Move-in within 60 days' });
+  } else {
+    signals.push({ ok:false, text:'Move-in date', note:`${days}+ days out` });
+  }
+
+  // 2. Occupants
+  const occ   = parseInt(answers.occupants);
+  const occOk = !isNaN(occ) && occ >= 1 && occ <= 4;
+  if (occOk)  { positives++; signals.push({ ok:true,  text:`${occ} occupant${occ !== 1 ? 's' : ''} — within limit` }); }
+  else         { signals.push({ ok:false, text:'Occupants', note: isNaN(occ) ? 'unparsed' : `${occ} — exceeds 4` }); }
+
+  // 3. Pets (neutral)
+  signals.push({ ok:null, text:`Pets: ${answers.pets}` });
+
+  // 4. Income — combined for all tenants, $500 buffer allowed below 3× threshold
+  const total    = answers.totalIncome || 0;
+  const needed   = rent * 3;
+  const floor    = needed - BUFFER;
+  const multi    = numOccupants > 1;
+  const incLabel = multi ? 'Combined income' : 'Income';
+
+  if (total >= needed) {
+    positives++;
+    signals.push({ ok:true, text:`${incLabel} $${Math.round(total).toLocaleString()}/mo — meets 3× threshold ($${needed.toLocaleString()})` });
+  } else if (total >= floor) {
+    positives++; // buffer zone — counts as positive but flagged
+    const short = Math.round(needed - total);
+    signals.push({ ok:true, text:`${incLabel} $${Math.round(total).toLocaleString()}/mo — $${short} short of 3× threshold`, note:`within $${BUFFER} buffer, verify with PM` });
+  } else {
+    const note = total > 0
+      ? `$${Math.round(total).toLocaleString()}/mo — need $${needed.toLocaleString()} (3× rent)`
+      : 'could not parse';
+    signals.push({ ok:false, text:incLabel, note });
+  }
+
+  // 5. Evictions — automatic DNQ
+  if (hasEviction(answers.evictions)) {
+    return { verdict:'dnq', label:'Does Not Qualify', action:'Does Not Qualify',
+             signals:[...signals, { ok:false, text:'Prior eviction on record — automatic disqualifier' }] };
+  }
+  signals.push({ ok:true, text:'No prior evictions' });
+
+  let verdict, label, action;
+  if      (positives === 3) { verdict='qualified'; label='Qualified';        action='Schedule Showing'; }
+  else if (positives === 2) { verdict='followup';  label='Follow Up Needed'; action='Follow Up Needed'; }
+  else                       { verdict='dnq';       label='Does Not Qualify'; action='Does Not Qualify'; }
+
+  return { verdict, label, action, positives, signals };
+}
+
+function parseDays(str) {
+  if (!str) return null;
+  const s = str.toLowerCase().trim();
+
+  // Intent phrases
+  if (/asap|immediately|now|right away|flexible|available|anytime|soon/i.test(s)) return 0;
+  if (/next month/i.test(s))                       return 30;
+  if (/two months|2[\s-]months/i.test(s))          return 61;
+  if (/three months|3[\s-]months/i.test(s))        return 91;
+  if (/end of (?:the )?month/i.test(s))            return 20;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Normalise: strip ordinal suffixes (15th→15), collapse commas to spaces
+  let c = str
+    .replace(/(\d+)\s*(st|nd|rd|th)\b/gi, '$1')
+    .replace(/,/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Expand two-digit years: 7/15/26 → 7/15/2026
+  c = c.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{2})$/, (_, m, d, y) =>
+    `${m}/${d}/${parseInt(y) + 2000}`
+  );
+
+  // Track whether input already contained a 4-digit year
+  const hadYear = /\b20\d{2}\b/.test(c);
+
+  // Append current year if none found — lets "July 15" parse correctly
+  if (!hadYear) c += ` ${today.getFullYear()}`;
+
+  const parsed = new Date(c);
+  if (isNaN(parsed.getTime())) return null; // truly unparseable
+
+  // If auto-appended year landed in the past, roll forward to next year
+  if (!hadYear && parsed < today) {
+    const nextYr = new Date(c.replace(`${today.getFullYear()}`, `${today.getFullYear() + 1}`));
+    if (!isNaN(nextYr.getTime())) return Math.round((nextYr - today) / 864e5);
+  }
+
+  return Math.round((parsed - today) / 864e5);
+}
+
+function parseIncome(str) {
+  if (!str) return null;
+  const s   = str.toLowerCase().replace(/[$, ]/g, '');
+  const kM  = s.match(/^(\d+(?:\.\d+)?)k/);
+  if (kM) {
+    const monthly = parseFloat(kM[1]) * 1000;
+    return /year|annual|yr/.test(str.toLowerCase()) ? monthly / 12 : monthly;
+  }
+  const num = parseFloat(s.replace(/[^0-9.]/g, ''));
+  if (isNaN(num)) return null;
+  if (/year|annual|yr/.test(str.toLowerCase())) return num / 12;
+  if (num > 15000) return num / 12; // assume annual
+  return num;
+}
+
+function hasEviction(str) {
+  if (!str) return false;
+  const s = str.toLowerCase();
+  if (/\bno\b|\bnone\b|\bnever\b|\bnot\b|clean|zero/i.test(s)) return false;
+  if (/\byes\b|\byep\b|\bhad\b|\bone\b|\b1\b|evict/i.test(s)) return true;
+  return false;
+}
+
+/* ── UI HELPERS ───────────────────────────────── */
+
+function addIncoming(text, showSender) {
+  const container = document.getElementById('chat-messages');
+  const row = document.createElement('div');
+  row.className = 'msg-row msg-incoming';
+  row.innerHTML = `
+    <div>
+      ${showSender ? '<div class="msg-sender">Lone Star Property Group</div>' : ''}
+      <div class="msg-bubble">${esc(text)}</div>
+    </div>`;
+  container.appendChild(row);
+  scrollChat();
+}
+
+function addOutgoing(text) {
+  const container = document.getElementById('chat-messages');
+  const row = document.createElement('div');
+  row.className = 'msg-row msg-outgoing';
+  row.innerHTML = `<div class="msg-bubble">${esc(text)}</div>`;
+  container.appendChild(row);
+  scrollChat();
+}
+
+function showTyping() {
+  const container = document.getElementById('chat-messages');
+  const id  = 'typ-' + Date.now();
+  const row = document.createElement('div');
+  row.id        = id;
+  row.className = 'msg-row msg-incoming';
+  row.innerHTML = `<div class="msg-bubble typing-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+  container.appendChild(row);
+  scrollChat();
+  return id;
+}
+
+function removeTyping(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function scrollChat() {
+  const c = document.getElementById('chat-messages');
+  requestAnimationFrame(() => {
+    c.scrollTo({ top: c.scrollHeight, behavior: 'smooth' });
+  });
+}
+
+function enableInput(placeholder) {
+  inputActive = true;
+  const wrap  = document.getElementById('chat-input-wrap');
+  const input = document.getElementById('chat-input');
+  wrap.style.display  = 'flex';
+  input.placeholder   = placeholder || 'Type your answer…';
+  input.focus();
+}
+
+function disableInput() {
+  inputActive = false;
+  document.getElementById('chat-input-wrap').style.display = 'none';
+}
+
+const ACT_ICONS = {
+  lead:'IN', fire:'↑', question:'?', answer:'✓',
+  complete:'●', qualified:'✓', dnq:'✗', followup:'~'
+};
+
+function addActivity(type, html) {
+  const feed = document.getElementById('activity-feed');
+  const div  = document.createElement('div');
+  div.className = `act-item type-${type}`;
+  div.innerHTML = `
+    <div class="act-time">${getElapsed()}</div>
+    <div class="act-icon">${ACT_ICONS[type] || '·'}</div>
+    <div class="act-body">${html}</div>`;
+  feed.appendChild(div);
+  scrollPM();
+}
+
+function addProfileRow(qId, answer) {
+  const profile = document.getElementById('lead-profile');
+  const q       = QUESTIONS.find(q => q.id === qId);
+  const section = document.getElementById('profile-section');
+
+  if (Object.keys(answers).length === 1) section.style.display = 'block';
+
+  const div = document.createElement('div');
+  div.className   = 'profile-row';
+  div.innerHTML   = `<div class="profile-key">${esc(q.label)}</div><div class="profile-val">${esc(answer)}</div>`;
+  profile.appendChild(div);
+  scrollPM();
+}
+
+function showVerdict(result) {
+  const section   = document.getElementById('verdict-section');
+  const container = document.getElementById('verdict-container');
+  section.style.display = 'block';
+
+  const VALID_VERDICTS = { qualified: 'qualified', followup: 'followup', dnq: 'dnq' };
+  const verdictKey = VALID_VERDICTS[result.verdict] || 'dnq';
+  const cls = `verdict-${verdictKey}`;
+  const sigsHTML = result.signals.map(s => {
+    const scls = s.ok === true ? 'vsig-ok' : s.ok === false ? 'vsig-no' : 'vsig-neutral';
+    const icon = s.ok === true ? '✓' : s.ok === false ? '✗' : '·';
+    return `<div class="vsig ${scls}">
+      <span class="vsig-icon">${icon}</span>
+      <span>${esc(s.text)}</span>
+      ${s.note ? `<span class="vsig-note">(${esc(s.note)})</span>` : ''}
+    </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="verdict-card ${cls}">
+      <div class="verdict-top">
+        <div class="verdict-status">${esc(result.label)}</div>
+        <div class="verdict-action-pill">${esc(result.action)}</div>
+      </div>
+      <div class="verdict-signals">${sigsHTML}</div>
+    </div>`;
+  scrollPM();
+}
+
+function scrollPM() {
+  const c = document.getElementById('pm-scroll');
+  c.scrollTop = c.scrollHeight;
+}
+
+function getElapsed() {
+  if (!startTime) return '0s';
+  const s = Math.round((Date.now() - startTime) / 1000);
+  return s < 60 ? `${s}s` : `${Math.floor(s/60)}m${s%60}s`;
+}
+
+/* ── API ──────────────────────────────────────── */
+
+async function callAPI(prompt) {
+  try {
+    const res = await fetch(PROXY_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model:      'claude-haiku-4-5-20251001',
+        max_tokens: 220,
+        system:     SYSTEM_PROMPT,
+        messages:   [{ role: 'user', content: prompt }]
+      })
+    });
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    return data.content[0].text;
+  } catch {
+    // Fallback messages
+    if (prompt.includes('welcome message')) {
+      return `Hi ${lead.firstName}! Thanks so much for your interest in Unit ${unit.unit} at ${unit.property} — we received your inquiry and we're excited to connect. I'm going to ask you a few quick questions to get you started, shouldn't take more than a minute!`;
+    }
+    return `Thank you, ${lead.firstName}! We've received all your information and our leasing team will be in touch within 24 hours with next steps. We're looking forward to the possibility of having you at ${unit.property}!`;
+  }
+}
+
+async function pause(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+/* ── RESET ────────────────────────────────────── */
+
+function resetDemo() {
+  clearInterval(timerRef);
+  lead = null; unit = null; answers = {};
+  currentQ = -1; startTime = null; inputActive = false;
+  numOccupants = 1; incomeMode = false; incomeSubIdx = 0; collectedIncomes = [];
+  petsMode = false; petsSubIdx = 0; petsDetails = {};
+
+  document.getElementById('activity-feed').innerHTML    = '';
+  document.getElementById('lead-profile').innerHTML     = '';
+  document.getElementById('chat-messages').innerHTML    = '';
+  document.getElementById('verdict-container').innerHTML = '';
+  document.getElementById('profile-section').style.display = 'none';
+  document.getElementById('verdict-section').style.display  = 'none';
+  document.getElementById('reset-wrap').style.display       = 'none';
+  document.getElementById('chat-input-wrap').style.display  = 'none';
+  document.getElementById('elapsed-display').textContent    = '0s';
+  document.getElementById('lead-form').reset();
+
+  document.getElementById('stage-2').style.display = 'none';
+  document.getElementById('stage-1').style.display = 'flex';
+}
+</script>
+</body>
+</html>
