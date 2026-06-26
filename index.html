@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-231RBKPQTB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-231RBKPQTB');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Roadmap — AI Systems for Property Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0F0F1A;
+      --bg-alt:       #13131F;
+      --purple:       #7B5EA7;
+      --purple-light: #A584CC;
+      --purple-dim:   rgba(123,94,167,0.15);
+      --card:         #3D3D4E;
+      --card-border:  rgba(123,94,167,0.3);
+      --text:         #F4F4F8;
+      --muted:        rgba(244,244,248,0.5);
+      --muted-dim:    rgba(244,244,248,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(15,15,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(123,94,167,0.15);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-brand span {
+      color: var(--purple-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-links .nav-login a {
+      color: var(--purple-light);
+      border: 1px solid rgba(123,94,167,0.4);
+      padding: 6px 16px;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-links .nav-login a:hover {
+      background: var(--purple-dim);
+      color: var(--text);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--muted);
+      transition: background 0.2s;
+    }
+
+    .nav-toggle:hover span { background: var(--text); }
+
+    @media (max-width: 680px) {
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #13131F;
+        border-bottom: 1px solid rgba(123,94,167,0.15);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 12px 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li { width: 100%; }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 24px;
+      }
+
+      .nav-links .nav-login a {
+        border: none;
+        border-radius: 0;
+        padding: 12px 24px;
+      }
+    }
+
+    /* ── SECTIONS ─────────────────────────────────────── */
+    section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-inner.narrow {
+      max-width: 660px;
+    }
+
+    .section-eyebrow {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .section-heading {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 620px;
+    }
+
+    .section-body p { margin-bottom: 16px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,94,167,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ── AURORA ───────────────────────────────────────── */
+    .aurora-layer {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform;
+      border-radius: 50%;
+    }
+
+    .aurora-1 {
+      width: 85%;
+      height: 65%;
+      top: -15%;
+      left: -5%;
+      background: radial-gradient(ellipse at 40% 55%,
+        rgba(75,45,143,0.30) 0%,
+        rgba(42,31,95,0.18) 45%,
+        transparent 70%);
+      filter: blur(80px);
+      animation: aurora-drift-1 24s ease-in-out infinite;
+    }
+
+    .aurora-2 {
+      width: 70%;
+      height: 55%;
+      top: 5%;
+      right: -10%;
+      background: radial-gradient(ellipse at 55% 45%,
+        rgba(123,94,167,0.26) 0%,
+        rgba(42,31,95,0.14) 48%,
+        transparent 70%);
+      filter: blur(90px);
+      animation: aurora-drift-2 32s ease-in-out infinite;
+    }
+
+    .aurora-3 {
+      width: 58%;
+      height: 42%;
+      bottom: 2%;
+      left: 18%;
+      background: radial-gradient(ellipse at 50% 55%,
+        rgba(75,45,143,0.22) 0%,
+        rgba(123,94,167,0.12) 50%,
+        transparent 72%);
+      filter: blur(85px);
+      animation: aurora-drift-3 28s ease-in-out infinite;
+    }
+
+    .aurora-4 {
+      width: 112%;
+      height: 22%;
+      top: 38%;
+      left: -6%;
+      border-radius: 40%;
+      background: linear-gradient(90deg,
+        transparent 5%,
+        rgba(42,31,95,0.18) 25%,
+        rgba(75,45,143,0.20) 45%,
+        rgba(123,94,167,0.14) 58%,
+        rgba(42,31,95,0.12) 75%,
+        transparent 95%);
+      filter: blur(60px);
+      animation: aurora-drift-4 42s ease-in-out infinite;
+    }
+
+    @keyframes aurora-drift-1 {
+      0%   { transform: translate(0%,   0%)  scale(1);    }
+      30%  { transform: translate(4%,   7%)  scale(1.04); }
+      60%  { transform: translate(-3%,  3%)  scale(0.97); }
+      100% { transform: translate(0%,   0%)  scale(1);    }
+    }
+
+    @keyframes aurora-drift-2 {
+      0%   { transform: translate(0%,   0%)  scale(1);    }
+      25%  { transform: translate(-5%, -5%)  scale(1.05); }
+      55%  { transform: translate(4%,   8%)  scale(0.96); }
+      80%  { transform: translate(-2%,  3%)  scale(1.02); }
+      100% { transform: translate(0%,   0%)  scale(1);    }
+    }
+
+    @keyframes aurora-drift-3 {
+      0%   { transform: translate(0%,   0%)  scale(1);    }
+      35%  { transform: translate(5%,  -6%)  scale(1.07); }
+      68%  { transform: translate(-4%,  5%)  scale(0.95); }
+      100% { transform: translate(0%,   0%)  scale(1);    }
+    }
+
+    @keyframes aurora-drift-4 {
+      0%   { transform: translateX(0%)  scaleY(1);    opacity: 0.9; }
+      40%  { transform: translateX(3%)  scaleY(1.18); opacity: 1;   }
+      72%  { transform: translateX(-3%) scaleY(0.88); opacity: 0.8; }
+      100% { transform: translateX(0%)  scaleY(1);    opacity: 0.9; }
+    }
+
+    .aurora-orb {
+      position: absolute;
+      width: 68%;
+      height: 72%;
+      top: 12%;
+      left: 16%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(75,45,143,0.16) 0%,
+        rgba(42,31,95,0.07) 48%,
+        transparent 72%);
+      filter: blur(110px);
+      pointer-events: none;
+      will-change: transform;
+      animation: orb-drift 38s ease-in-out infinite;
+    }
+
+    @keyframes orb-drift {
+      0%   { transform: translate(-18%,  8%); }
+      18%  { transform: translate( -6%, -9%); }
+      40%  { transform: translate( 14%,  2%); }
+      60%  { transform: translate( 20%, 12%); }
+      78%  { transform: translate(  4%, 16%); }
+      100% { transform: translate(-18%,  8%); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border: 1px solid rgba(123,94,167,0.5);
+      color: var(--purple-light);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--purple-dim);
+      border-color: var(--purple);
+      color: var(--text);
+    }
+
+    .hero-cta-arrow {
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    .hero-cta:hover .hero-cta-arrow { transform: translateX(3px); }
+
+    /* ── GOAL ─────────────────────────────────────────── */
+    #goal {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(123,94,167,0.1);
+      border-bottom: 1px solid rgba(123,94,167,0.1);
+    }
+
+    /* ── PRODUCT ──────────────────────────────────────── */
+    #product { background: var(--bg); }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 580px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-top: 3px solid var(--purple);
+      padding: 40px 36px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .product-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-3px);
+    }
+
+    .product-card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--purple-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .product-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--purple-light);
+    }
+
+    .product-card-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+    }
+
+    .product-card-desc {
+      font-size: 14.5px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--purple-light);
+      letter-spacing: 0.03em;
+      margin-top: 8px;
+      transition: gap 0.2s, color 0.2s;
+    }
+
+    .product-card-link:hover {
+      color: var(--text);
+      gap: 11px;
+    }
+
+    .product-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,94,167,0.25) 30%, rgba(123,94,167,0.25) 70%, transparent);
+      margin: 80px 0;
+    }
+
+    .product-sub-body {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .process-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── ABOUT ─────────────────────────────────────────── */
+    #about {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(123,94,167,0.1);
+      border-bottom: 1px solid rgba(123,94,167,0.1);
+    }
+
+    /* ── CONTACT ──────────────────────────────────────── */
+    #contact { background: var(--bg); }
+
+    .contact-profile {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .contact-profile-photo {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid rgba(123,94,167,0.4);
+      flex-shrink: 0;
+    }
+
+    .contact-profile-name {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.1px;
+    }
+
+    .contact-profile-title {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .contact-profile-email {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-light);
+      border-bottom: 1px solid rgba(123,94,167,0.35);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-profile-email:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    /* ── CLIENT LOGIN ─────────────────────────────────── */
+    #login {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(123,94,167,0.1);
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .login-inner {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .login-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted-dim);
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .login-text {
+      font-size: 14px;
+      color: var(--muted-dim);
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(123,94,167,0.1);
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--muted-dim);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">ROI <span>Roadmap</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#goal">Our Goal</a></li>
+      <li><a href="#product">Our Product</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-login"><a href="#login">Client Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="aurora-layer aurora-1"></div>
+  <div class="aurora-layer aurora-2"></div>
+  <div class="aurora-layer aurora-3"></div>
+  <div class="aurora-layer aurora-4"></div>
+  <div class="aurora-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AI Systems for Property Management</div>
+    <h1 class="hero-headline">We build the systems.<br>You run the business.</h1>
+    <p class="hero-sub">We automate the work that's eating your week so you can focus on what actually grows your business.</p>
+    <a href="#product" class="hero-cta">
+      See what we build
+      <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ GOAL -->
+<section id="goal">
+  <div class="section-inner narrow">
+    <div class="section-eyebrow">Our Goal</div>
+    <h2 class="section-heading">Less time managing.<br>More time growing.</h2>
+    <div class="section-body">
+      <p>ROI Roadmap builds AI systems for small property management companies. We focus on the work that takes the most time with the least return — tenant communications, maintenance coordination, owner reporting — and replace it with systems that run on their own.</p>
+      <p>Most property managers we work with are at capacity. Not because the business is failing, but because every hour goes toward keeping it running. We fix that so your time can go toward actually growing your portfolio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ PRODUCT -->
+<section id="product">
+  <div class="section-inner">
+    <div class="section-eyebrow">Our Product</div>
+
+    <!-- ── OUR PROCESS ──────────────────────────── -->
+    <h2 class="section-heading">Our Process</h2>
+    <p class="product-sub-body">Every engagement starts here. We map out exactly where your business is losing time and money — then we build the solution.</p>
+    <div class="process-wrap">
+      <div class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <div class="product-card-title">ROI Roadmap</div>
+        <div class="product-card-desc">A prioritized breakdown of where your business is leaking time and money, built around your specific numbers.</div>
+        <a href="/lone-star/lonestarroadmap" class="product-card-link">
+          View sample <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <hr class="product-divider">
+
+    <!-- ── OUR SYSTEMS ──────────────────────────── -->
+    <h2 class="section-heading">Our Systems</h2>
+    <p class="product-sub-body">Every system we build is custom fit to your business — these are examples of what that looks like.</p>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 8h10M7 11h6"/>
+          </svg>
+        </div>
+        <div class="product-card-title">Owner Financial Dashboard</div>
+        <div class="product-card-desc">Real time visibility into portfolio performance. Rent collection, vacancy, open maintenance costs, and projected net income — one place your owner clients check themselves.</div>
+        <a href="/lone-star/owner-dashboard" class="product-card-link">
+          View demo <span>→</span>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div class="product-card-title">Communication Triage</div>
+        <div class="product-card-desc">AI-powered tenant communication that never sleeps. Every message classified, prioritized, and drafted — urgent issues escalate, everything else gets handled.</div>
+        <a href="/lone-star/communication" class="product-card-link">
+          View demo <span>→</span>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3-3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0z"/>
+            <path d="M14.7 6.3L10 11l-4 1 1-4 5.3-5.3"/>
+            <path d="M3 21l4-4M21 3l-1.5 1.5"/>
+          </svg>
+        </div>
+        <div class="product-card-title">Maintenance &amp; Vendor Scorecard</div>
+        <div class="product-card-desc">Intelligent work order routing and vendor ranking. Every open job tracked, every vendor scored — the right contractor surfaces automatically.</div>
+        <a href="/lone-star/maintenance" class="product-card-link">
+          View demo <span>→</span>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div class="product-card-title">Lead Response Engine</div>
+        <div class="product-card-desc">5-minute automated lead response that converts. Prospects get a reply before they move on — and the leases stop going to whoever answers fastest.</div>
+        <a href="/lone-star/leads" class="product-card-link">
+          View demo <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ ABOUT -->
+<section id="about">
+  <div class="section-inner narrow">
+    <div class="section-eyebrow">About Us</div>
+    <h2 class="section-heading">Built for property management.<br>Not adapted to it.</h2>
+    <div class="section-body">
+      <p>ROI Roadmap is an AI systems consultancy focused entirely on the property management industry. We work with owner-operators managing 50 to 200 units who have hit an operational ceiling — too busy to grow, not ready to hire.</p>
+      <p>Every system we build is specific to how you already work. We don't sell generic software. We start with a discovery process, identify exactly where the time and money are going, and build what actually fixes it. Nothing gets built until we both agree on what the problem is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ CONTACT -->
+<section id="contact">
+  <div class="section-inner narrow">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="section-heading">Let's talk.</h2>
+    <div class="section-body">
+      <p>Have a question or want to talk through what AI could do for your business? Reach out directly. No pitch, no pressure — just a conversation.</p>
+    </div>
+    <div class="contact-profile">
+      <img src="assets/HeadShot.jpeg" alt="Wyatt Spivey" class="contact-profile-photo">
+      <div>
+        <div class="contact-profile-name">Wyatt Spivey</div>
+        <div class="contact-profile-title">Co-Founder / CTO</div>
+        <a href="mailto:wyatt@roiroadmap.ai" class="contact-profile-email">wyatt@roiroadmap.ai</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ CLIENT LOGIN -->
+<section id="login">
+  <div class="login-inner">
+    <div class="login-label">Client Access</div>
+    <div class="login-text">Client portal coming soon.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">ROI Roadmap</div>
+    <div class="footer-copy">roiroadmap.ai &nbsp;·&nbsp; wyatt@roiroadmap.ai &nbsp;·&nbsp; <span id="footer-date"></span></div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+
+  // Close mobile nav when a link is clicked
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  document.getElementById('footer-date').textContent =
+    new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+</script>
+</body>
+</html>
